@@ -10,5 +10,5 @@ using namespace std;
 vector<Player> PLAYERS;
 
 
-Property Dabney("Dabney Hall", "brown", 1, 60, 2, 30, 50);
-//                   name, color, position, price, rent, mort, house cost
+Property Dabney("Dabney Hall", "brown");
+// name, color, pos, price, mort, house price, r0, r1, r2, r3, r4, r5

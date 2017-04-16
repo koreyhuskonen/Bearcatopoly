@@ -25,21 +25,20 @@ public:
 };
 
 class Property {
-    int position, price, houses, house_price, rent, mortgage;
+    int position, price, houses, house_price, mortgage, rent0, rent1, rent2, rent3, rent4, rent5;
     string name, color;
     bool owned;
     Player *owner;
 public:
-    Property(string prop_name, string prop_color, int pos, int prop_price, int prop_rent, int prop_mort, int house_cost){
-        houses = 0; owned = false;
-        name = prop_name;
-        color = prop_color;
+    Property(string p_name, string p_color, int pos, int p_price, int p_mort, int h_price, int r0, int r1, int r2, int r3, int r4, int r5){
+        name = p_name;
+        color = p_color;
         position = pos;
-        price = prop_price;
-        rent = prop_rent;
-        mortgage = prop_mort;
-        house_price = house_cost;
-        owner = NULL;
+        price = p_price;
+        mortgage = p_mort;
+        house_price = h_price;
+        rent0 = r0; rent1 = r1; rent2 = r2; rent3 = r3; rent4 = r4; rent5 = r5;
+        houses = 0; owned = false; owner = NULL;
     }
 
     void pay_rent(Player rent_payer);
