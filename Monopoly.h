@@ -30,12 +30,12 @@ class Property {
     bool owned;
     Player *owner;
 public:
-    Property(string p_name, string p_color, int pos, int p_price, int p_mort, int h_price, int r0, int r1, int r2, int r3, int r4, int r5){
+    Property(string p_name, string p_color, int pos, int p_price, int mort, int h_price, int r0, int r1, int r2, int r3, int r4, int r5){
         name = p_name;
         color = p_color;
         position = pos;
         price = p_price;
-        mortgage = p_mort;
+        mortgage = mort;
         house_price = h_price;
         rent0 = r0; rent1 = r1; rent2 = r2; rent3 = r3; rent4 = r4; rent5 = r5;
         houses = 0; owned = false; owner = NULL;
@@ -82,19 +82,22 @@ public:
     }
 };
 
-class Utility {
-    int position;
+class Eatery {
+    int position, price, mortgage;
     string name;
-    int price;
     bool owned;
-    Player owner;
+    Player *owner;
+public:
+    Eatery(string e_name, int e_pos, int e_price, int mort){
+        name = e_name;
+        position = e_pos;
+        price = e_price;
+        mortgage = mort;
+        owned = false; owner = NULL;
+    }
 
-    bool check_ownership(Utility other_utility);
-    void pay_rent(Player rent_payer);
-};
+    int getPos(){return position;}
+    int getPrice(){return price;}
 
-class Card {
-    int position;
 
-    void draw_card(Player current_player);
 };
