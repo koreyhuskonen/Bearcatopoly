@@ -8,13 +8,12 @@ class Player {
     int position;
     bool jailed;
 public:
-    Player(string st){
-        name = st;
+    Player(string player_name){
+        name = player_name;
         money = 1500;
         position = 0;
         jailed = false;
     }
-
     string getName(){return name;}
     double getMoney(){return money;}
     void addMoney(int amount){money += amount;}
