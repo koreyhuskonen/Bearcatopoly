@@ -21,6 +21,13 @@ public:
     int getPos(){return position;}
     void move(int roll){position = (position + roll) % 40;}
     bool in_jail(){return jailed;}
+    // bool buyProperty(Property &property){
+    //     int price = property.getPrice();
+    //     if(money - price < 0) return false;
+    //     subMoney(price);
+    //     property.change_owner(this);
+    //     return true;
+    // }
 };
 
 class Property {
@@ -66,11 +73,12 @@ public:
                 return rent0;
         }
     }
-    void pay_rent(Player rent_payer){
+    void pay_rent(Player &rent_payer){
         int rent = getRent();
         rent_payer.subMoney(rent);
         owner->addMoney(rent);
     }
+    void change_owner(Player *new_owner){owner = new_owner;}
 };
 
 class Utility {
