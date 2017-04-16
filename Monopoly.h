@@ -3,36 +3,43 @@
 using namespace std;
 
 class Player {
-public:
     string name;
     double money;
     int position;
-    bool in_jail;
-
+    bool jailed;
+public:
     Player(string st){
         name = st;
         money = 1500;
         position = 0;
-        in_jail = false;
+        jailed = false;
     }
 
+    string getName(){return name;}
+    double getMoney(){return money;}
+    void addMoney(int amount){money += amount;}
+    void subMoney(int amount){money -= amount;}
+    int getPos(){return position;}
+    void move(int roll){position = (position + roll) % 40;}
+    bool in_jail(){return jailed;}
 };
 
 class Property {
-    int position, price, houses, hotels, house_price, hotel_price, rent, mortgage;
+    int position, price, houses, house_price, rent, mortgage;
     string name, color;
     bool owned;
-    Player owner;
-
-    Property(string prop_name, string prop_color, int prop_cost, int prop_rent, int prop_mort, int house_cost, int hotel_cost){
-        position = 0; houses = 0; hotels = 0; owned = false;
+    Player *owner;
+public:
+    Property(string prop_name, string prop_color, int pos, int prop_price, int prop_rent, int prop_mort, int house_cost){
+        houses = 0; owned = false;
         name = prop_name;
         color = prop_color;
-        price = prop_cost;
+        position = pos;
+        price = prop_price;
         rent = prop_rent;
         mortgage = prop_mort;
         house_price = house_cost;
-        hotel_price = hotel_cost;
+        owner = NULL;
     }
 
     void pay_rent(Player rent_payer);

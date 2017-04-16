@@ -23,7 +23,7 @@ int main(){
 
     for(int i = 0; i < num_players; i++){
         cout << "Player" + to_string(i+1) + ": ";
-        cout << PLAYERS[i].name << endl;
+        cout << PLAYERS[i].getName() << endl;
     }
 
     return 0;
