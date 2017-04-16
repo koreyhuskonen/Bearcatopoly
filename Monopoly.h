@@ -2,6 +2,7 @@
 
 using namespace std;
 
+
 class Player {
     string name;
     double money;
@@ -19,15 +20,8 @@ public:
     void addMoney(int amount){money += amount;}
     void subMoney(int amount){money -= amount;}
     int getPos(){return position;}
-    void move(int roll){position = (position + roll) % 40;}
+    void move(int amount){position = (position + amount) % 40;}
     bool in_jail(){return jailed;}
-    // bool buyProperty(Property &property){
-    //     int price = property.getPrice();
-    //     if(money - price < 0) return false;
-    //     subMoney(price);
-    //     property.change_owner(this);
-    //     return true;
-    // }
 };
 
 class Property {
@@ -79,6 +73,13 @@ public:
         owner->addMoney(rent);
     }
     void change_owner(Player *new_owner){owner = new_owner;}
+    bool buyProperty(Player *player){
+        int budget = player->getMoney();
+        if(budget - price < 0) return false;
+        player->subMoney(price);
+        change_owner(player);
+        return true;
+    }
 };
 
 class Utility {
