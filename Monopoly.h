@@ -1,13 +1,16 @@
 #include <string>
+#include <vector>
 
 using namespace std;
 
+class Property;
 
 class Player {
     string name;
     double money;
     int position;
     bool jailed;
+    vector<Property> properties;
 public:
     Player(string player_name){
         name = player_name;
@@ -22,6 +25,8 @@ public:
     int getPos(){return position;}
     void move(int amount){position = (position + amount) % 40;}
     bool in_jail(){return jailed;}
+    vector<Property> getProperties(){return properties;}
+    bool canAfford(int price){return money - price > 0;}
 };
 
 class Property {
@@ -73,11 +78,27 @@ public:
         owner->addMoney(rent);
     }
     void change_owner(Player *new_owner){owner = new_owner;}
-    bool buyProperty(Player *player){
-        int budget = player->getMoney();
-        if(budget - price < 0) return false;
+    bool buy_property(Player *player){
+        if(!player->canAfford(price)) return false;
         player->subMoney(price);
         change_owner(player);
+        return true;
+    }
+    int colorGroupSize(){
+        if (color == "brown" || color == "dark blue") return 2;
+        return 3;
+    }
+    bool canBuyHouse(Player &player){
+        int group_size = colorGroupSize(), count;
+        for(int i = 0; i < player.getProperties().size(); i++){
+            if(player.getProperties()[i].getColor() == color) count++;
+        }
+        return (count == group_size && player.canAfford(house_price) && houses <= 5);
+    }
+    bool buy_house(Player &player){
+        if(!canBuyHouse(player)) return false;
+        houses++;
+        player.subMoney(house_price);
         return true;
     }
 };
@@ -95,9 +116,13 @@ public:
         mortgage = mort;
         owned = false; owner = NULL;
     }
-
     int getPos(){return position;}
     int getPrice(){return price;}
+    int getMortgage(){return mortgage;}
+    string getName(){return name;}
+    bool is_owned(){return owned;}
+    string getOwner(){return owner->getName();}
+
 
 
 };
