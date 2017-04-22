@@ -138,3 +138,8 @@ public:
         return 25 * pow(2,count-1);
     }
 };
+
+class BearcatCard : public Location {
+public:
+    BearcatCard() : Location("Bearcat Card", 0, 0, 0) {}
+};
