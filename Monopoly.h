@@ -28,6 +28,7 @@ public:
     void addMoney(int amount){money += amount;}
     void subMoney(int amount){money -= amount;}
     int getPos(){return position;}
+    void setPos(int pos){position = pos;}
     void move(int amount){position = (position + amount) % 40;}
     bool in_jail(){return jailed;}
     vector<Property> getProperties(){return properties;}
