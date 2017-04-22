@@ -1,9 +1,12 @@
 #include <string>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
 class Property;
+class Eatery;
+class Street;
 
 class Player {
     string name;
@@ -11,6 +14,8 @@ class Player {
     int position;
     bool jailed;
     vector<Property> properties;
+    vector<Eatery> eateries;
+    vector<Street> streets;
 public:
     Player(string player_name){
         name = player_name;
@@ -26,6 +31,8 @@ public:
     void move(int amount){position = (position + amount) % 40;}
     bool in_jail(){return jailed;}
     vector<Property> getProperties(){return properties;}
+    vector<Eatery> getEateries(){return eateries;}
+    vector<Street> getStreets(){return streets;}
     bool canAfford(int price){return money - price > 0;}
 };
 
@@ -122,7 +129,60 @@ public:
     string getName(){return name;}
     bool is_owned(){return owned;}
     string getOwner(){return owner->getName();}
+    int getRent(int dice_roll){
+        int count = 0;
+        while(count < owner->getEateries().size()) count++;
+        if(count == 1) return dice_roll * 4;
+        return dice_roll * 10;
+    }
+    void pay_rent(Player &rent_payer, int dice_roll){
+        int rent = getRent(dice_roll);
+        rent_payer.subMoney(rent);
+        owner->addMoney(rent);
+    }
+    void change_owner(Player *new_owner){owner = new_owner;}
+    bool buy_eatery(Player *player){
+        if(!player->canAfford(price)) return false;
+        player->subMoney(price);
+        change_owner(player);
+        return true;
+    }
+};
 
-
-
+class Street {
+    int position, price, mortgage;
+    string name;
+    bool owned;
+    Player *owner;
+public:
+    Street(string e_name, int e_pos, int e_price, int mort){
+        name = e_name;
+        position = e_pos;
+        price = e_price;
+        mortgage = mort;
+        owned = false; owner = NULL;
+    }
+    int getPos(){return position;}
+    int getPrice(){return price;}
+    int getMortgage(){return mortgage;}
+    string getName(){return name;}
+    bool is_owned(){return owned;}
+    string getOwner(){return owner->getName();}
+    int getRent(){
+        int count = 0;
+        while(count < owner->getStreets().size()) count++;
+        return 25 * pow(2,count-1);
+    }
+    void pay_rent(Player &rent_payer){
+        int rent = getRent();
+        rent_payer.subMoney(rent);
+        owner->addMoney(rent);
+    }
+    void change_owner(Player *new_owner){owner = new_owner;}
+    bool buy_street(Player *player){
+        if(!player->canAfford(price)) return false;
+        player->subMoney(price);
+        change_owner(player);
+        return true;
+    }
 };
