@@ -39,3 +39,7 @@ Property PROPERTIES[] = {Dabney, Old_Chem, Calhoun, Center_Court,
                          Lindner, DAAP, Rec_Center, Turner, Teachers,
                          UPA, ERC, Fifth_Third, Sigma, McMicken,
                          Nippert, TUC, Morgens, Scioto};
+
+
+Eatery Canes("Raising Cane's", 28, 150, 75);
+Eatery Insomnia("Insomnia Cookies", 12, 150, 75);
