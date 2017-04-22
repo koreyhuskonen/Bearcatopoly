@@ -33,7 +33,6 @@ Property TUC("TUC", "green", 34, 320, 160, 200, 28, 150, 450, 1000, 1200, 1400);
 Property Morgens("Morgens", "dark blue", 37, 350, 175, 200, 35, 175, 500, 1100, 1300, 1500);
 Property Scioto("Scioto", "dark blue", 39, 400, 200, 200, 50, 200, 600, 1400, 1700, 2000);
 
-
 Property PROPERTIES[] = {Dabney, Old_Chem, Calhoun, Center_Court,
                          Crosley_Tower, Baldwin, Langsam, MarketPointe,
                          Lindner, DAAP, Rec_Center, Turner, Teachers,
@@ -45,3 +44,11 @@ Eatery Canes("Raising Cane's", 28, 150, 75);
 Eatery Insomnia("Insomnia Cookies", 12, 150, 75);
 
 Eatery EATERIES[] = {Canes, Insomnia};
+
+
+Street Calhoun_St("Calhoun St", 5, 200, 100);
+Street Clifton_Ave("Clifton Ave", 15, 200, 100);
+Street MLK_Dr("Martin Luther King Dr", 25, 200, 100);
+Street Jefferson_Ave("Jefferson Ave", 35, 200, 100);
+
+Street STREETS[] = {Calhoun_St, Clifton_Ave, MLK_Dr, Jefferson_Ave};
