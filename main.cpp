@@ -9,6 +9,5 @@
 using namespace std;
 
 int main(){
-    cout << Dabney.getName() << endl;
     return 0;
 }
