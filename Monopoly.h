@@ -139,12 +139,7 @@ public:
     }
 };
 
-class BearcatCard : public Location {
+class Other : public Location {
 public:
-    BearcatCard() : Location("Bearcat Card", 0, 0, 0) {}
-};
-
-class Tax : public Location {
-public:
-    Tax() : Location("Tax", 0, 0, 0) {}
+    Other(string lname) : Location(lname, 0, 0, 0) {}
 };
