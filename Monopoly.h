@@ -12,7 +12,7 @@ class Street;
 class Player {
     string name;
     int position, money;
-    bool jailed;
+    bool jailed, jail_pass;
     vector<Property> properties;
     vector<Eatery> eateries;
     vector<Street> streets;
@@ -25,10 +25,14 @@ public:
     }
     string getName(){return name;}
     int getPos(){return position;}
+    void setPos(int pos){position = pos;}
     int getMoney(){return money;}
     void addMoney(int amount){money += amount;}
     void subMoney(int amount){money -= amount;}
-    bool in_jail(){return jailed;}
+    bool inJail(){return jailed;}
+    void switchJail(){jailed = !jailed;}
+    bool getJailPass(){return jail_pass;}
+    void switchJailPass(){jail_pass = !jail_pass;}
     void move(int amount){position = (position + amount) % 40;}
     vector<Property> getProperties(){return properties;}
     vector<Eatery> getEateries(){return eateries;}
@@ -53,19 +57,19 @@ public:
     int getPrice(){return price;}
     int getMortgage(){return mortgage;}
     string getName(){return name;}
-    bool is_owned(){return owned;}
+    bool isOwned(){return owned;}
     string getOwner(){return owner->getName();}
     virtual int getRent(){return 0;}
-    virtual void pay_rent(Player &rent_payer){
+    virtual void payRent(Player &rent_payer){
         int rent = getRent();
         rent_payer.subMoney(rent);
         owner->addMoney(rent);
     }
-    void change_owner(Player *new_owner){owner = new_owner;}
-    bool buy_location(Player *player){
+    void setOwner(Player *new_owner){owner = new_owner;}
+    bool buyLocation(Player *player){
         if(!player->canAfford(price)) return false;
         player->subMoney(price);
-        change_owner(player);
+        setOwner(player);
         return true;
     }
 };
@@ -101,7 +105,7 @@ public:
         }
         return (count == group_size && player.canAfford(house_price) && houses <= 5);
     }
-    bool buy_house(Player &player){
+    bool buyHouse(Player &player){
         if(!canBuyHouse(player)) return false;
         houses++;
         player.subMoney(house_price);
@@ -120,7 +124,7 @@ public:
         if(count == 1) return dice_roll * 4;
         return dice_roll * 10;
     }
-    void pay_rent(Player &rent_payer, int dice_roll){
+    void payRent(Player &rent_payer, int dice_roll){
         int rent = getRent(dice_roll);
         rent_payer.subMoney(rent);
         owner->addMoney(rent);
