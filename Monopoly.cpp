@@ -52,3 +52,17 @@ Street MLK_Dr("Martin Luther King Dr", 25, 200, 100);
 Street Jefferson_Ave("Jefferson Ave", 35, 200, 100);
 
 Street STREETS[] = {Calhoun_St, Clifton_Ave, MLK_Dr, Jefferson_Ave};
+
+Other card1("Bearcat Card"), card2("Bearcat Card"), card3("Bearcat Card"),
+      card4("Bearcat Card"), card5("Bearcat Card"), card6("Bearcat Card"),
+      tax1("Income Tax"), tax2("Luxury Tax"),
+      Go("Go"), VisitingJail("Visiting Jail"),
+      FreeParking("Free Parking"), GoToJail("Go To Jail");
+
+Location BOARD[] = {Go, Dabney, card1, Old_Chem, tax1, Calhoun_St, Calhoun,
+                    card2, Center_Court, Crosley_Tower, VisitingJail, Baldwin,
+                    Insomnia, Langsam, MarketPointe, Clifton_Ave, Lindner,
+                    card3, DAAP, Rec_Center, FreeParking, Turner, card4, Teachers,
+                    UPA, MLK_Dr, ERC, Fifth_Third, Canes, Sigma, GoToJail,
+                    McMicken, Nippert, card5, TUC, Jefferson_Ave, card6,
+                    Morgens, tax2, Scioto}
