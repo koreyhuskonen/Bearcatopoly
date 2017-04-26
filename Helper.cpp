@@ -25,47 +25,60 @@ int getRandomCard(){
 }
 
 
-// void drawCard(Player &player){
-//     int card_number = getRandomCard();
-//     if(card_number == 0){
-//         // Advance to Go. Collect $200
-//         player.setPos(0);
-//         player.addMoney(200);
-//     }
-//     else if(card_number == 1){
-//         // Get out of Jail Free Pass
-//         if(player.getJailPass() == true) player.addMoney(50);
-//         if(player.getJailPass() == false) player.switchJailPass();
-//     }
-//     else if(card_number == 2){
-//         // You got caught on Bearcat Snaps. Go directly to jail, Do not pass Go, do not collect $200
-//         player.getPos() = 420;
-//         player.in_jail() = true;
-//     }
-//     else if(card_number == 3){
-//     You joined Greek Life!!! Pay your dues. (Pay $100)
-//     }
-//     else if(card_number == 4){
-//     Its your birthday!!! Collect $10 from every player
-//     }
-//     else if(card_number == 5){
-//     You missed out on Tender Tuesday. Advance to Raising Cane's to get some Tenders.
-//     }
-//     else if(card_number == 6){
-//     You and your roommates are in need of a snack while studying. Advance to Insomnia Cookies.
-//     }
-//     else if(card_number == 7){
-//     UC has construction on campus. Move back 3 spaces.
-//     }
-//     else if(card_number == 8){
-//     You won a scholarship contest. (Collect $150)
-//     }
-//     else if(card_number == 9){
-//     The college basketball season has began. You purchase a UC basketball season ticket. (Pay $50)
-//     }
-//     else if(card_number == 10){
-//     You spotted Bearcat on campus. (collect $50)
-//     }
-//     else Pay your respects to Harambe. (Pay $50)
-//
-// }
+void drawCard(Player &player){
+    int card_number = getRandomCard();
+    if(card_number == 0){
+    // Advance to Go. Collect $200.
+        player.setPos(0);
+        player.addMoney(200);
+    }
+    else if(card_number == 1){
+    // Get out of Jail Free
+        if(player.getJailPass() == true) player.addMoney(50);
+        if(player.getJailPass() == false) player.switchJailPass();
+    }
+    else if(card_number == 2){
+    // You got caught on Bearcat Snaps. Go directly to Jail. Do not pass Go. Do not collect $200.
+        player.setPos(420);
+        player.switchJail();
+    }
+    else if(card_number == 3){
+    // You joined Greek Life!!! Pay your dues. (Pay $100)
+        player.subMoney(100);
+    }
+    else if(card_number == 4){
+    // It's your birthday!!! Collect $10 from every player.
+    // TODO: Fill this one in
+    }
+    else if(card_number == 5){
+    // You missed out on Tender Tuesday. Advance to Raising Cane's to get some tenders.
+        if(player.getPos() > 28) player.addMoney(200);
+        player.setPos(28);
+    }
+    else if(card_number == 6){
+    // You and your roommates need a snack while studying. Advance to Insomnia Cookies.
+        if(player.getPos() > 12) player.addMoney(200);
+        player.setPos(12);
+    }
+    else if(card_number == 7){
+    // UC has construction on campus. Move back 3 spaces.
+        int current_position = player.getPos();
+        player.setPos(current_position - 3);
+    }
+    else if(card_number == 8){
+    // You won a scholarship contest. (Collect $150)
+        player.addMoney(150);
+    }
+    else if(card_number == 9){
+    // The college basketball season has begun. You purchase a UC basketball season ticket. (Pay $50)
+        player.subMoney(50);
+    }
+    else if(card_number == 10){
+    // You spotted the Bearcat on campus. (Collect $50)
+        player.addMoney(50);
+    }
+    else {
+    // Pay your respects to Harambe. (Pay $100)
+        player.subMoney(100);
+    }
+}
