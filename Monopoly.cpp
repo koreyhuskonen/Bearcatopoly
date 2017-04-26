@@ -65,4 +65,4 @@ Location BOARD[] = {Go, Dabney, card1, Old_Chem, tax1, Calhoun_St, Calhoun,
                     card3, DAAP, Rec_Center, FreeParking, Turner, card4, Teachers,
                     UPA, MLK_Dr, ERC, Fifth_Third, Canes, Sigma, GoToJail,
                     McMicken, Nippert, card5, TUC, Jefferson_Ave, card6,
-                    Morgens, tax2, Scioto}
+                    Morgens, tax2, Scioto};

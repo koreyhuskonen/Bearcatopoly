@@ -38,6 +38,7 @@ public:
     vector<Eatery> getEateries(){return eateries;}
     vector<Street> getStreets(){return streets;}
     bool canAfford(int price){return money - price > 0;}
+
 };
 
 class Location {
