@@ -45,13 +45,12 @@ int main(){
                 Location *current_location = BOARD[current_player->getPos()];
                 cout << "New position: " << current_player->getPos() << endl;
                 cout << "New location: " << current_location->getName() << endl;
-                current_location->buyLocation(current_player);
                 cout << current_player->getName() << "'s money: " << current_player->getMoney() << endl;
 
 
                 if(current_location->getType() != "other"){
                     if(current_location->isOwned()){
-                
+
                     } else {
                         cout << "You have landed on " << current_location->getName() << ". Would you like to buy it? (y/n)" << endl;
                         cin >> input;
