@@ -67,12 +67,8 @@ int main(){
                         }
                     }
                 } else if(current_location->getName() == "Bearcat Card"){
-
-
-
-
-
-
+                    cout << "The card says: ";
+                    drawCard(current_player);
                 }
 
 

@@ -45,63 +45,63 @@ int getRandomCard(){
 }
 
 
-void drawCard(Player &player){
+void drawCard(Player *player){
     int card_number = getRandomCard();
     if(card_number == 0){
         cout << "Advance to Go. Collect $200." << endl;
-        player.setPos(0);
-        player.addMoney(200);
+        player->setPos(0);
+        player->addMoney(200);
     }
     else if(card_number == 1){
         cout << "You acquired a Get Out of Jail Free Pass." << endl;
-        if(player.getJailPass() == true) player.addMoney(50);
-        if(player.getJailPass() == false) player.switchJailPass();
+        if(player->getJailPass() == true) player->addMoney(50);
+        if(player->getJailPass() == false) player->switchJailPass();
     }
     else if(card_number == 2){
         cout << "Caught on Bearcat Snaps!!! Go directly to Jail. Do not pass Go. Do not collect $200." << endl;
-        player.setPos(420);
-        player.switchJail();
+        player->setPos(420);
+        player->switchJail();
     }
     else if(card_number == 3){
         cout << "You joined Greek Life!!! Pay your dues. (Pay $100)" << endl;
-        player.subMoney(100);
+        player->subMoney(100);
     }
     else if(card_number == 4){
         cout << "It's your birthday!!! Collect $10 from every player." << endl;
         for(int i = 0; i < PLAYERS.size(); i++){
             PLAYERS[i].subMoney(10);
-            player.addMoney(10);
+            player->addMoney(10);
         }
     }
     else if(card_number == 5){
         cout << "You missed out on Tender Tuesday. Advance to Raising Cane's to get some tenders." << endl;
-        if(player.getPos() > 28) player.addMoney(200);
-        player.setPos(28);
+        if(player->getPos() > 28) player->addMoney(200);
+        player->setPos(28);
     }
     else if(card_number == 6){
         cout << "You and your roommates need a snack while studying. Advance to Insomnia Cookies." << endl;
-        if(player.getPos() > 12) player.addMoney(200);
-        player.setPos(12);
+        if(player->getPos() > 12) player->addMoney(200);
+        player->setPos(12);
     }
     else if(card_number == 7){
         cout << "There's construction on campus. Move back 3 spaces." << endl;
-        int current_position = player.getPos();
-        player.setPos(current_position - 3);
+        int current_position = player->getPos();
+        player->setPos(current_position - 3);
     }
     else if(card_number == 8){
         cout << "You won a scholarship contest. (Collect $150)" << endl;
-        player.addMoney(150);
+        player->addMoney(150);
     }
     else if(card_number == 9){
         cout << "The college basketball season has begun. You purchase a UC basketball season ticket. (Pay $50)" << endl;
-        player.subMoney(50);
+        player->subMoney(50);
     }
     else if(card_number == 10){
-    // You spotted the Bearcat on campus. (Collect $50)
-        player.addMoney(50);
+        cout << "You spotted the Bearcat on campus. (Collect $50)" << endl;
+        player->addMoney(50);
     }
     else {
-    // Pay your respects to Harambe. (Pay $100)
-        player.subMoney(100);
+        cout << "Pay your respects to Harambe. (Pay $100)" << endl;
+        player->subMoney(100);
     }
 }
