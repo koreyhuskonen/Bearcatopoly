@@ -47,13 +47,13 @@ Other card1("Bearcat Card"), card2("Bearcat Card"), card3("Bearcat Card"),
       Go("Go"), VisitingJail("Visiting Jail"),
       FreeParking("Free Parking"), GoToJail("Go To Jail");
 
-Location BOARD[] = {Go, Dabney, card1, Old_Chem, tax1, Calhoun_St, Calhoun,
-                    card2, Center_Court, Crosley_Tower, VisitingJail, Baldwin,
-                    Insomnia, Langsam, MarketPointe, Clifton_Ave, Lindner,
-                    card3, DAAP, Rec_Center, FreeParking, Turner, card4, Teachers,
-                    UPA, MLK_Dr, ERC, Fifth_Third, Canes, Sigma, GoToJail,
-                    McMicken, Nippert, card5, TUC, Jefferson_Ave, card6,
-                    Morgens, tax2, Scioto};
+Location* BOARD[] = {&Go, &Dabney, &card1, &Old_Chem, &tax1, &Calhoun_St, &Calhoun,
+                    &card2, &Center_Court, &Crosley_Tower, &VisitingJail, &Baldwin,
+                    &Insomnia, &Langsam, &MarketPointe, &Clifton_Ave, &Lindner,
+                    &card3, &DAAP, &Rec_Center, &FreeParking, &Turner, &card4, &Teachers,
+                    &UPA, &MLK_Dr, &ERC, &Fifth_Third, &Canes, &Sigma, &GoToJail,
+                    &McMicken, &Nippert, &card5, &TUC, &Jefferson_Ave, &card6,
+                    &Morgens, &tax2, &Scioto};
 
 void Player::addProperty(Property &new_property){properties.push_back(new_property);}
 void Player::addEatery(Eatery &new_eatery){eateries.push_back(new_eatery);}
