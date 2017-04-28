@@ -35,11 +35,11 @@ int main(){
             choice = menu(current_player);
 
             if(choice == 1){
-                cout << "Current position: " << current_player.getPos() << endl;
+                cout << "Current position: " << current_player->getPos() << endl;
                 int roll = rollDice();
-                cout << "Your roll: " + roll << endl;
-                current_player.move(roll);
-                cout << "New position: " << current_player.getPos() << endl;
+                cout << "Your roll: " << roll << endl;
+                current_player->move(roll);
+                cout << "New position: " << current_player->getPos() << endl;
             }
 
 
