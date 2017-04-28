@@ -6,10 +6,8 @@
 
 using namespace std;
 
-string mystr;
-
 int turnStartMenu(Player *player){
-    int choice;
+    int choice; string mystr;
     cout << player->getName() << ", it's your turn. What would you like to do?" << endl
          << "Options:" << endl
          << "1. Roll to move" << endl
@@ -70,24 +68,24 @@ void drawCard(Player &player){
         player.subMoney(100);
     }
     else if(card_number == 4){
-    // It's your birthday!!! Collect $10 from every player.
+        cout << "It's your birthday!!! Collect $10 from every player." << endl;
         for(int i = 0; i < PLAYERS.size(); i++){
             PLAYERS[i].subMoney(10);
             player.addMoney(10);
         }
     }
     else if(card_number == 5){
-    // You missed out on Tender Tuesday. Advance to Raising Cane's to get some tenders.
+        cout << "You missed out on Tender Tuesday. Advance to Raising Cane's to get some tenders." << endl;
         if(player.getPos() > 28) player.addMoney(200);
         player.setPos(28);
     }
     else if(card_number == 6){
-    // You and your roommates need a snack while studying. Advance to Insomnia Cookies.
+        cout << "You and your roommates need a snack while studying. Advance to Insomnia Cookies." << endl;
         if(player.getPos() > 12) player.addMoney(200);
         player.setPos(12);
     }
     else if(card_number == 7){
-    // UC has construction on campus. Move back 3 spaces.
+        cout << "There's construction on campus. Move back 3 spaces." << endl;
         int current_position = player.getPos();
         player.setPos(current_position - 3);
     }
