@@ -36,10 +36,12 @@ int main(){
 
             if(choice == 1){
                 cout << "Current position: " << current_player->getPos() << endl;
+                cout << "Current location: " << BOARD[current_player->getPos()].getName() << endl;
                 int roll = rollDice();
                 cout << "Your roll: " << roll << endl;
                 current_player->move(roll);
                 cout << "New position: " << current_player->getPos() << endl;
+                cout << "New location: " << BOARD[current_player->getPos()].getName() << endl;
             }
 
 
