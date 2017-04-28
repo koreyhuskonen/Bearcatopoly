@@ -18,7 +18,6 @@ int turnStartMenu(Player *player){
         getline(cin, mystr);
         stringstream(mystr) >> choice;
     } while(choice < 1 || choice > 3);
-    cout << endl;
     return choice;
 }
 

@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <string>
 #include <vector>
+#include <sstream>
 #include "Monopoly.cpp"
 #include "Helper.cpp"
 
@@ -16,22 +17,23 @@ int main(){
          << "_________ BEARCATOPOLY _________" << "\n\n"
          << "Phase 1 - Player Creation" << endl
          << "Enter the number of players: ";
+    string player_name, input;
     int num_players;
-    cin >> num_players;
-    string player_name;
+    getline(cin, input);
+    stringstream(input) >> num_players;
     for(int i = 0; i < num_players; i++){
         cout << "Enter Player " << i+1 << "'s name (one word): ";
-        cin >> player_name;
+        getline(cin, player_name);
         Player player_temp(player_name);
         PLAYERS.push_back(player_temp);
     }
     cout << endl << "Phase 2 - Game Play" << endl;
     int round_count = 1, choice, roll;
     Player *current_player;
-    char input;
     while(PLAYERS.size() > 1){
 
         for(int z = 0; z < PLAYERS.size(); z++){
+            cout << endl;
             current_player = &PLAYERS[z];
             choice = turnStartMenu(current_player);
             cout << "CHOICE: " << choice << endl;
@@ -55,10 +57,10 @@ int main(){
                         cout << "You paid $" << current_location->getRent() << endl;
                     } else {
                         cout << "Would you like to buy it? (y/n)" << endl;
-                        cin >> input;
-                        if(input == 'y'){
+                        getline(cin, input);
+                        if(input == "y"){
                             if(current_location->buyLocation(current_player)){
-                                cout << "Congratulations! You have bought " << current_location->getName() << "!" << endl;
+                                cout << "Congratulations! You bought " << current_location->getName() << "!" << endl;
                             } else {
                                 cout << "You cannot buy " << current_location->getName() << "." << endl;
                             }
