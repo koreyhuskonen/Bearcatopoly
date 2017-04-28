@@ -2,8 +2,11 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+#include <sstream>
 
 using namespace std;
+
+string mystr;
 
 int menu(Player *player){
     int choice;
@@ -13,9 +16,12 @@ int menu(Player *player){
          << "2. Sell some of your properties" << endl
          << "3. Build houses on your properties" << endl;
     do {
-         cout << "Enter your choice: ";
-         cin >> choice;
+        cout << "Enter your choice: ";
+        getline(cin, mystr);
+        stringstream(mystr) >> choice;
     } while(choice < 1 || choice > 3);
+
+
     return choice;
 }
 

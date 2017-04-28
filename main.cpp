@@ -33,6 +33,7 @@ int main(){
         for(int z = 0; z < PLAYERS.size(); z++){
             current_player = &PLAYERS[z];
             choice = menu(current_player);
+            
 
 
 
