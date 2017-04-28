@@ -20,8 +20,6 @@ int menu(Player *player){
         getline(cin, mystr);
         stringstream(mystr) >> choice;
     } while(choice < 1 || choice > 3);
-
-
     return choice;
 }
 

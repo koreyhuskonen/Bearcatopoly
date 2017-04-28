@@ -33,7 +33,14 @@ int main(){
         for(int z = 0; z < PLAYERS.size(); z++){
             current_player = &PLAYERS[z];
             choice = menu(current_player);
-            
+
+            if(choice == 1){
+                cout << "Current position: " << current_player.getPos() << endl;
+                int roll = rollDice();
+                cout << "Your roll: " + roll << endl;
+                current_player.move(roll);
+                cout << "New position: " << current_player.getPos() << endl;
+            }
 
 
 
