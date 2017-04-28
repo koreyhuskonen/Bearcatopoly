@@ -32,7 +32,7 @@ int main(){
 
         for(int z = 0; z < PLAYERS.size(); z++){
             current_player = &PLAYERS[z];
-            choice = menu(current_player);
+            choice = turnStartMenu(current_player);
 
             if(choice == 1){
                 cout << "Current position: " << current_player->getPos() << endl;
@@ -40,8 +40,21 @@ int main(){
                 int roll = rollDice();
                 cout << "Your roll: " << roll << endl;
                 current_player->move(roll);
+                Location *current_location = BOARD + current_player->getPos();
                 cout << "New position: " << current_player->getPos() << endl;
-                cout << "New location: " << BOARD[current_player->getPos()].getName() << endl;
+                cout << "New location: " << current_location->getName() << endl;
+
+                if(current_location->getType() != "other"){
+                    if(current_location->isOwned()){
+
+                    } else {
+                        cout << "You have landed on " << current_location->getName() << ". Would you like to buy it?" << endl;
+                    }
+
+
+                }
+
+
             }
 
 

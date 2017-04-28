@@ -8,7 +8,7 @@ using namespace std;
 
 string mystr;
 
-int menu(Player *player){
+int turnStartMenu(Player *player){
     int choice;
     cout << player->getName() << ", it's your turn. What would you like to do?" << endl
          << "Options:" << endl
@@ -20,6 +20,7 @@ int menu(Player *player){
         getline(cin, mystr);
         stringstream(mystr) >> choice;
     } while(choice < 1 || choice > 3);
+    cout << endl;
     return choice;
 }
 

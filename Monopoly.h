@@ -65,6 +65,7 @@ public:
     string getName(){return name;}
     bool isOwned(){return owned;}
     string getOwner(){return owner->getName();}
+    string getType(){return type;}
     virtual int getRent(){return 0;}
     virtual void payRent(Player *rent_payer){
         int rent = getRent();
@@ -191,5 +192,8 @@ public:
 
 class Other : public Location {
 public:
-    Other(string lname) : Location(lname, 0, 0, 0) {}
+    Other(string lname) : Location(lname, 0, 0, 0)
+    {
+        type = "other";
+    }
 };
