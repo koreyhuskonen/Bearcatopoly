@@ -44,6 +44,7 @@ public:
     void removeProperty(Property &property);
     void removeEatery(Eatery &eatery);
     void removeStreet(Street &street);
+    void displayProperties();
 };
 
 class Location {

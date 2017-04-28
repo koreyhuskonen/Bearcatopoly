@@ -11,13 +11,14 @@ int turnStartMenu(Player *player){
     cout << player->getName() << ", it's your turn. What would you like to do?" << endl
          << "Options:" << endl
          << "1. Roll to move" << endl
-         << "2. Sell some of your properties" << endl
-         << "3. Build houses on your properties" << endl;
+         << "2. Display your properties" << endl
+         << "3. Sell some of your properties" << endl
+         << "4. Build houses on your properties" << endl;
     do {
         cout << "Enter your choice: ";
         getline(cin, mystr);
         stringstream(mystr) >> choice;
-    } while(choice < 1 || choice > 3);
+    } while(choice < 1 || choice > 4);
     return choice;
 }
 

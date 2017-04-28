@@ -22,7 +22,7 @@ int main(){
     getline(cin, input);
     stringstream(input) >> num_players;
     for(int i = 0; i < num_players; i++){
-        cout << "Enter Player " << i+1 << "'s name (one word): ";
+        cout << "Enter Player " << i+1 << "'s name: ";
         getline(cin, player_name);
         Player player_temp(player_name);
         PLAYERS.push_back(player_temp);
@@ -49,8 +49,8 @@ int main(){
                 cout << "New location: " << current_location->getName() << endl;
                 cout << current_player->getName() << "'s money: " << current_player->getMoney() << endl;
 
-                cout << "You landed on " << current_location->getName() << "." << endl;
                 if(current_location->getType() != "other"){
+                    cout << "You landed on " << current_location->getName() << "." << endl;
                     if(current_location->isOwned()){
                         cout << current_location->getOwner() << " already owns this property. You'll have to pay rent." << endl;
                         current_location->payRent(current_player);
@@ -67,16 +67,17 @@ int main(){
                         }
                     }
                 } else if(current_location->getName() == "Bearcat Card"){
+                    cout << "You landed on a Bearcat Card!" << endl;
                     cout << "The card says: ";
                     drawCard(current_player);
                 }
-
-
+            } else if(choice == 2){
+                current_player->displayProperties();
             }
 
 
 
-
+            current_player->displayProperties();
 
 
         }

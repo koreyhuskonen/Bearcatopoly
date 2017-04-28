@@ -62,14 +62,21 @@ void Player::removeProperty(Property &property){
     int i = 0;
     while(property.getName() != properties[i].getName()) i++;
     properties.erase(properties.begin()+i);
-};
+}
 void Player::removeEatery(Eatery &eatery){
     int i = 0;
     while(eatery.getName() != eateries[i].getName()) i++;
     eateries.erase(eateries.begin()+i);
-};
+}
 void Player::removeStreet(Street &street){
     int i = 0;
     while(street.getName() != streets[i].getName()) i++;
     streets.erase(streets.begin()+i);
-};
+}
+void Player::displayProperties(){
+    cout << name << "'s Properties: ";
+    for(int i = 0; i < properties.size(); i++) cout << properties[i].getName() << "  ";
+    for(int i = 0; i < eateries.size(); i++) cout << eateries[i].getName() << "  ";
+    for(int i = 0; i < streets.size(); i++) cout << streets[i].getName() << "  ";
+    cout << endl;
+}
