@@ -90,11 +90,11 @@ void drawCard(Player &player){
         player.setPos(current_position - 3);
     }
     else if(card_number == 8){
-    // You won a scholarship contest. (Collect $150)
+        cout << "You won a scholarship contest. (Collect $150)" << endl;
         player.addMoney(150);
     }
     else if(card_number == 9){
-    // The college basketball season has begun. You purchase a UC basketball season ticket. (Pay $50)
+        cout << "The college basketball season has begun. You purchase a UC basketball season ticket. (Pay $50)" << endl;
         player.subMoney(50);
     }
     else if(card_number == 10){
