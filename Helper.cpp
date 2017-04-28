@@ -13,7 +13,7 @@ int menu(Player *player){
          << "2. Sell some of your properties" << endl
          << "3. Build houses on your properties" << endl;
     do {
-         cout << "Enter your choice: " << endl;
+         cout << "Enter your choice: ";
          cin >> choice;
     } while(choice < 1 || choice > 3);
     return choice;

@@ -25,6 +25,7 @@ int main(){
         Player player_temp(player_name);
         PLAYERS.push_back(player_temp);
     }
+    cout << endl << "Phase 2 - Game Play" << endl;
     int round_count = 1, choice;
     Player *current_player;
     while(PLAYERS.size() > 1){
@@ -34,14 +35,12 @@ int main(){
             choice = menu(current_player);
 
 
+
+
+
+
         }
 
-
-
-
     }
-
-
-
 
 }
