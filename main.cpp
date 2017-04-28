@@ -47,12 +47,14 @@ int main(){
                 cout << "New location: " << current_location->getName() << endl;
                 cout << current_player->getName() << "'s money: " << current_player->getMoney() << endl;
 
-
+                cout << "You landed on " << current_location->getName() << "." << endl;
                 if(current_location->getType() != "other"){
                     if(current_location->isOwned()){
-
+                        cout << current_location->getOwner() << " already owns this property. You'll have to pay rent." << endl;
+                        current_location->payRent(current_player);
+                        cout << "You paid $" << current_location->getRent() << endl;
                     } else {
-                        cout << "You have landed on " << current_location->getName() << ". Would you like to buy it? (y/n)" << endl;
+                        cout << "Would you like to buy it? (y/n)" << endl;
                         cin >> input;
                         if(input == 'y'){
                             if(current_location->buyLocation(current_player)){
@@ -60,8 +62,6 @@ int main(){
                             } else {
                                 cout << "You cannot buy " << current_location->getName() << "." << endl;
                             }
-                        } else {
-
                         }
 
 
