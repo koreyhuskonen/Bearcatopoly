@@ -51,22 +51,22 @@ int getRandomCard(){
 void drawCard(Player &player){
     int card_number = getRandomCard();
     if(card_number == 0){
-    // Advance to Go. Collect $200.
+        cout << "Advance to Go. Collect $200." << endl;
         player.setPos(0);
         player.addMoney(200);
     }
     else if(card_number == 1){
-    // Get out of Jail Free
+        cout << "You acquired a Get Out of Jail Free Pass." << endl;
         if(player.getJailPass() == true) player.addMoney(50);
         if(player.getJailPass() == false) player.switchJailPass();
     }
     else if(card_number == 2){
-    // You got caught on Bearcat Snaps. Go directly to Jail. Do not pass Go. Do not collect $200.
+        cout << "Caught on Bearcat Snaps!!! Go directly to Jail. Do not pass Go. Do not collect $200." << endl;
         player.setPos(420);
         player.switchJail();
     }
     else if(card_number == 3){
-    // You joined Greek Life!!! Pay your dues. (Pay $100)
+        cout << "You joined Greek Life!!! Pay your dues. (Pay $100)" << endl;
         player.subMoney(100);
     }
     else if(card_number == 4){

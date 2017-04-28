@@ -34,7 +34,7 @@ int main(){
         for(int z = 0; z < PLAYERS.size(); z++){
             current_player = &PLAYERS[z];
             choice = turnStartMenu(current_player);
-
+            cout << "CHOICE: " << choice << endl;
             if(choice == 1){
                 cout << "Current position: " << current_player->getPos() << endl;
                 cout << "Current location: " << BOARD[current_player->getPos()]->getName() << endl;
@@ -63,9 +63,12 @@ int main(){
                                 cout << "You cannot buy " << current_location->getName() << "." << endl;
                             }
                         }
-
-
                     }
+                } else if(current_location->getName() == "Bearcat Card"){
+
+
+
+
 
 
                 }
