@@ -26,8 +26,9 @@ int main(){
         PLAYERS.push_back(player_temp);
     }
     cout << endl << "Phase 2 - Game Play" << endl;
-    int round_count = 1, choice;
+    int round_count = 1, choice, roll;
     Player *current_player;
+    char input;
     while(PLAYERS.size() > 1){
 
         for(int z = 0; z < PLAYERS.size(); z++){
@@ -37,9 +38,10 @@ int main(){
             if(choice == 1){
                 cout << "Current position: " << current_player->getPos() << endl;
                 cout << "Current location: " << BOARD[current_player->getPos()].getName() << endl;
-                int roll = rollDice();
+                roll = rollDice();
                 cout << "Your roll: " << roll << endl;
                 current_player->move(roll);
+
                 Location *current_location = BOARD + current_player->getPos();
                 cout << "New position: " << current_player->getPos() << endl;
                 cout << "New location: " << current_location->getName() << endl;
@@ -48,7 +50,17 @@ int main(){
                     if(current_location->isOwned()){
 
                     } else {
-                        cout << "You have landed on " << current_location->getName() << ". Would you like to buy it?" << endl;
+                        cout << "You have landed on " << current_location->getName() << ". Would you like to buy it? (y/n)" << endl;
+                        cin >> input;
+                        if(input == 'y'){
+                            if(current_location->buyLocation(current_player)){
+                                cout << "Congratulations! You have bought " << current_location->getName() << "!" << endl;
+                            } else {
+                                cout << "You cannot buy " << current_location->getName() << "." << endl;
+                            }
+                        }
+
+
                     }
 
 
