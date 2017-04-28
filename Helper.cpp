@@ -48,7 +48,10 @@ void drawCard(Player &player){
     }
     else if(card_number == 4){
     // It's your birthday!!! Collect $10 from every player.
-    // TODO: Fill this one in
+        for(int i = 0; i < PLAYERS.size(); i++){
+            PLAYERS[i].subMoney(10);
+            player.addMoney(10);
+        }
     }
     else if(card_number == 5){
     // You missed out on Tender Tuesday. Advance to Raising Cane's to get some tenders.

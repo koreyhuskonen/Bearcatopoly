@@ -34,17 +34,22 @@ public:
     bool getJailPass(){return jail_pass;}
     void switchJailPass(){jail_pass = !jail_pass;}
     void move(int amount){position = (position + amount) % 40;}
+    bool canAfford(int price){return money - price > 0;}
     vector<Property> getProperties(){return properties;}
     vector<Eatery> getEateries(){return eateries;}
     vector<Street> getStreets(){return streets;}
-    bool canAfford(int price){return money - price > 0;}
-
+    void addProperty(Property &new_property);
+    void addEatery(Eatery &new_eatery);
+    void addStreet(Street &new_street);
+    void removeProperty(Property &property);
+    void removeEatery(Eatery &eatery);
+    void removeStreet(Street &street);
 };
 
 class Location {
 protected:
     int position, price, mortgage;
-    string name;
+    string name, type;
     bool owned;
     Player *owner;
 public:
@@ -67,12 +72,6 @@ public:
         owner->addMoney(rent);
     }
     void setOwner(Player *new_owner){owner = new_owner;}
-    bool buyLocation(Player *player){
-        if(!player->canAfford(price)) return false;
-        player->subMoney(price);
-        setOwner(player);
-        return true;
-    }
 };
 
 class Property : public Location {
@@ -83,9 +82,20 @@ public:
         : Location(lname, lpos, lprice, lmort), color(lcolor), house_price(hprice),
           rent0(r0), rent1(r1), rent2(r2), rent3(r3), rent4(r4), rent5(r5)
     {
-        houses = 0;
+        houses = 0; type = "property";
     }
-
+    bool buyLocation(Player *player){
+        if(!player->canAfford(price) || owner) return false;
+        player->subMoney(price);
+        player->addProperty(*this);
+        setOwner(player);
+        return true;
+    }
+    void sellLocation(){
+        owner->addMoney(mortgage);
+        owner->removeProperty(*this);
+        owner = NULL;
+    }
     string getColor(){return color;}
     int getRent(){
         if(houses == 0) return rent0;
@@ -99,26 +109,44 @@ public:
         if (color == "brown" || color == "dark blue") return 2;
         return 3;
     }
-    bool canBuyHouse(Player &player){
+    bool canBuyHouse(){
         int group_size = colorGroupSize(), count;
-        for(int i = 0; i < player.getProperties().size(); i++){
-            if(player.getProperties()[i].getColor() == color) count++;
+        for(int i = 0; i < owner->getProperties().size(); i++){
+            if(owner->getProperties()[i].getColor() == color) count++;
         }
-        return (count == group_size && player.canAfford(house_price) && houses <= 5);
+        return (count == group_size && owner->canAfford(house_price) && houses < 5);
     }
-    bool buyHouse(Player &player){
-        if(!canBuyHouse(player)) return false;
+    bool buyHouse(){
+        if(!canBuyHouse()) return false;
         houses++;
-        player.subMoney(house_price);
+        owner->subMoney(house_price);
         return true;
+    }
+    void sellHouse(int amount = 1){
+        owner->addMoney(amount * house_price/2);
+        houses -= amount;
     }
 };
 
 class Eatery : public Location {
 public:
     Eatery(string lname, int lpos, int lprice, int lmort)
-        : Location(lname, lpos, lprice, lmort) {}
-
+        : Location(lname, lpos, lprice, lmort)
+    {
+        type = "eatery";
+    }
+    bool buyLocation(Player *player){
+        if(!player->canAfford(price) || owner) return false;
+        player->subMoney(price);
+        player->addEatery(*this);
+        setOwner(player);
+        return true;
+    }
+    void sellLocation(){
+        owner->addMoney(mortgage);
+        owner->removeEatery(*this);
+        owner = NULL;
+    }
     int getRent(int dice_roll){
         int count = 0;
         while(count < owner->getEateries().size()) count++;
@@ -135,8 +163,22 @@ public:
 class Street : public Location {
 public:
     Street(string lname, int lpos, int lprice, int lmort)
-        : Location(lname, lpos, lprice, lmort) {}
-
+        : Location(lname, lpos, lprice, lmort)
+    {
+        type = "street";
+    }
+    bool buyLocation(Player *player){
+        if(!player->canAfford(price) || owner) return false;
+        player->subMoney(price);
+        player->addStreet(*this);
+        setOwner(player);
+        return true;
+    }
+    void sellLocation(){
+        owner->addMoney(mortgage);
+        owner->removeStreet(*this);
+        owner = NULL;
+    }
     int getRent(){
         int count = 0;
         while(count < owner->getStreets().size()) count++;

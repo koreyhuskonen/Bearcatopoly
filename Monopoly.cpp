@@ -12,7 +12,7 @@ vector<Player> PLAYERS;
 // p_name, p_color, pos, p_price, p_mort, h_price, r0, r1, r2, r3, r4, r5
 Property Dabney("Dabney Hall", "brown", 1, 60, 30, 50, 2, 10, 30, 90, 160, 250);
 Property Old_Chem("Old Chem", "brown", 3, 60, 30, 50, 4, 20, 60, 180, 320, 450);
-Property Calhoun("Calhoun", "light blue", 6, 100, 50, 50, 6, 30, 90, 270, 400, 550);
+Property Calhoun("Calhoun Hall", "light blue", 6, 100, 50, 50, 6, 30, 90, 270, 400, 550);
 Property Center_Court("Center Court", "light blue", 8, 100, 50, 50, 6, 30, 90, 270, 400, 550);
 Property Crosley_Tower("Crosley Tower", "light blue", 9, 120, 60, 50, 8, 40, 100, 300, 450, 600);
 Property Baldwin("Baldwin Hall", "pink", 11, 140, 70, 100, 10, 50, 150, 450, 625, 750);
@@ -66,3 +66,22 @@ Location BOARD[] = {Go, Dabney, card1, Old_Chem, tax1, Calhoun_St, Calhoun,
                     UPA, MLK_Dr, ERC, Fifth_Third, Canes, Sigma, GoToJail,
                     McMicken, Nippert, card5, TUC, Jefferson_Ave, card6,
                     Morgens, tax2, Scioto};
+
+void Player::addProperty(Property &new_property){properties.push_back(new_property);}
+void Player::addEatery(Eatery &new_eatery){eateries.push_back(new_eatery);}
+void Player::addStreet(Street &new_street){streets.push_back(new_street);}
+void Player::removeProperty(Property &property){
+    int i = 0;
+    while(property.getName() != properties[i].getName()) i++;
+    properties.erase(properties.begin()+i);
+};
+void Player::removeEatery(Eatery &eatery){
+    int i = 0;
+    while(eatery.getName() != eateries[i].getName()) i++;
+    eateries.erase(eateries.begin()+i);
+};
+void Player::removeStreet(Street &street){
+    int i = 0;
+    while(street.getName() != streets[i].getName()) i++;
+    streets.erase(streets.begin()+i);
+};
