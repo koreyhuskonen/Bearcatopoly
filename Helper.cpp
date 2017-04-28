@@ -5,6 +5,24 @@
 
 using namespace std;
 
+int menu(Player *player){
+    int choice;
+    cout << player->getName() << ", it's your turn. What would you like to do?" << endl
+         << "Options:" << endl
+         << "1. Roll to move" << endl
+         << "2. Sell some of your properties" << endl
+         << "3. Build houses on your properties" << endl;
+    do {
+         cout << "Enter your choice: " << endl;
+         cin >> choice;
+    } while(choice < 1 || choice > 3);
+    return choice;
+}
+
+
+
+
+
 int rollDice(){
     int roll_1, roll_2, move;
     srand(time(NULL));

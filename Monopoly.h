@@ -66,12 +66,13 @@ public:
     bool isOwned(){return owned;}
     string getOwner(){return owner->getName();}
     virtual int getRent(){return 0;}
-    virtual void payRent(Player &rent_payer){
+    virtual void payRent(Player *rent_payer){
         int rent = getRent();
-        rent_payer.subMoney(rent);
+        rent_payer->subMoney(rent);
         owner->addMoney(rent);
     }
     void setOwner(Player *new_owner){owner = new_owner;}
+    virtual bool buyLocation(Player *player){return 0;};
 };
 
 class Property : public Location {
@@ -122,9 +123,11 @@ public:
         owner->subMoney(house_price);
         return true;
     }
-    void sellHouse(int amount = 1){
+    bool sellHouse(int amount = 1){
+        if(houses == 0 || amount > houses) return false;
         owner->addMoney(amount * house_price/2);
         houses -= amount;
+        return true;
     }
 };
 
