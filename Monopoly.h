@@ -73,7 +73,7 @@ public:
         owner->addMoney(rent);
     }
     void setOwner(Player *new_owner){owner = new_owner;}
-    virtual bool buyLocation(Player *player){return 0;};
+    virtual bool buyLocation(Player *player){cout << "Base class!!!!" << endl; return 0;}
 };
 
 class Property : public Location {
@@ -87,6 +87,7 @@ public:
         houses = 0; type = "property";
     }
     bool buyLocation(Player *player){
+        cout << "Derived class!!!!" << endl;
         if(!player->canAfford(price) || owner) return false;
         player->subMoney(price);
         player->addProperty(*this);
