@@ -141,13 +141,14 @@ public:
         owner->subMoney(house_price);
         return true;
     }
-    bool sellHouse(int amount = 1){
-        if(houses == 0 || amount > houses) return false;
-        owner->addMoney(amount * house_price/2);
-        houses -= amount;
+    bool sellHouse(Player *player){
+        if(player != owner || houses == 0) return false;
+        owner->addMoney(house_price/2);
+        houses--;
         return true;
     }
     int getHouses(){return houses;}
+    int getHousePrice(){return house_price;}
 };
 
 class Eatery : public Location {

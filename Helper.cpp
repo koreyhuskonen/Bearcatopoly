@@ -13,12 +13,13 @@ int turnStartMenu(Player *player){
          << "1. Roll to move" << endl
          << "2. Display your properties" << endl
          << "3. Sell some of your properties" << endl
-         << "4. Build houses on your properties" << endl;
+         << "4. Build houses on your properties" << endl
+         << "5. Sell houses on your properties" << endl;
     do {
         cout << "Enter your choice: ";
         getline(cin, mystr);
         stringstream(mystr) >> choice;
-    } while(choice < 1 || choice > 4);
+    } while(choice < 1 || choice > 5);
     return choice;
 }
 
@@ -95,6 +96,7 @@ void drawCard(Player *player){
         int current_position = player->getPos();
         player->setPos(current_position - 3);
         if(player->getPos() < 0) player->setPos(39);
+        cout << "You landed on " << BOARD[player->getPos()]->getName() << "." << endl;
     }
     else if(card_number == 8){
         cout << "You won a scholarship contest. (Collect $150)" << endl;

@@ -142,7 +142,7 @@ int main(){
                         }
                     }
                 } else if(choice == 4){
-                    cout << "Enter the name of the property you'd like to build houses on: ";
+                    cout << "Enter the name of the property where you'd like to build houses: ";
                     string property_name; Location *sl = NULL;
                     getline(cin, property_name);
                     for(int i = 0; i < 40; i++){
@@ -150,18 +150,51 @@ int main(){
                     }
                     if(!sl){
                         cout << "You did not enter a valid property name." << endl;
-                    } else if(dynamic_cast<Property*>(sl)->buyHouse(current_player)){
-                        if(dynamic_cast<Property*>(sl)->getHouses() == 1){
-                            cout << "There is now 1 house on " << sl->getName() << "." << endl;
-                        } else if(dynamic_cast<Property*>(sl)->getHouses() == 5){
-                            cout << "There is now 1 hotel on " << sl->getName() << "." << endl;
-                        } else {
-                            cout << "There are now " << dynamic_cast<Property*>(sl)->getHouses() << " houses on " << sl->getName() << "." << endl;
-                        }
                     } else {
-                        cout << "You cannot build a house on this property." << endl;
+                        cout << "Build a house on " << sl->getName() << " for $" << dynamic_cast<Property*>(sl)->getHousePrice() << "? (y/n)" << endl;
+                        getline(cin, input);
+                        if(input == "y" || input == "yes" || input == "Yes"){
+                            if(dynamic_cast<Property*>(sl)->buyHouse(current_player)){
+                                cout << "You built a house on " << sl->getName() << " for $" << dynamic_cast<Property*>(sl)->getHousePrice() << "." << endl;
+                                if(dynamic_cast<Property*>(sl)->getHouses() == 1){
+                                    cout << "There is now 1 house on " << sl->getName() << "." << endl;
+                                } else if(dynamic_cast<Property*>(sl)->getHouses() == 5){
+                                    cout << "There is now 1 hotel on " << sl->getName() << "." << endl;
+                                } else {
+                                    cout << "There are now " << dynamic_cast<Property*>(sl)->getHouses() << " houses on " << sl->getName() << "." << endl;
+                                }
+                            } else {
+                                cout << "You cannot build a house on this property." << endl;
+                            }
+                        }
                     }
-
+                } else if(choice == 5){
+                    cout << "Enter the name of the property where you'd like to sell houses: ";
+                    string property_name; Location *sl = NULL;
+                    getline(cin, property_name);
+                    for(int i = 0; i < 40; i++){
+                        if(BOARD[i]->getName() == property_name && BOARD[i]->getType() == "property") sl = BOARD[i];
+                    }
+                    if(!sl){
+                        cout << "You did not enter a valid property name." << endl;
+                    } else {
+                        cout << "Sell a house on " << sl->getName() << " for $" << dynamic_cast<Property*>(sl)->getHousePrice() << "? (y/n)" << endl;
+                        getline(cin, input);
+                        if(input == "y" || input == "yes" || input == "Yes"){
+                            if(dynamic_cast<Property*>(sl)->sellHouse(current_player)){
+                                cout << "You sold 1 house on " << sl->getName() << " for $" << dynamic_cast<Property*>(sl)->getHousePrice() << "." << endl;
+                                if(dynamic_cast<Property*>(sl)->getHouses() == 1){
+                                    cout << "There is now 1 house on " << sl->getName() << "." << endl;
+                                } else if(dynamic_cast<Property*>(sl)->getHouses() == 5){
+                                    cout << "There is now 1 hotel on " << sl->getName() << "." << endl;
+                                } else {
+                                    cout << "There are now " << dynamic_cast<Property*>(sl)->getHouses() << " houses on " << sl->getName() << "." << endl;
+                                }
+                            } else {
+                                cout << "You cannot sell a house on this property." << endl;
+                            }
+                        }
+                    }
                 }
             }
                 choice = 0;
