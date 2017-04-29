@@ -38,13 +38,14 @@ int main(){
 
             if(current_player->inJail() && current_player->getJailTime() < 3){
                 cout << current_player->getName() << ", you're in jail." << endl;
+                if(current_player->getJailPass()){
+                    cout << "Use your Get Out of Jail Free pass? (y/n)" << endl;
+                    getline(cin, input);
+                    if(input == "y") leaveJail(current_player);
+                }
                 current_player->incJailTime();
                 continue;
-            } else if(current_player->inJail()){
-                current_player->resetJailTime();
-                current_player->switchJail();
-                current_player->setPos(10);
-            }
+            } else if(current_player->inJail()) leaveJail(current_player);
 
             cout << current_player->getName() << "'s position: " << current_player->getPos() << endl;
             cout << current_player->getName() << "'s location: " << BOARD[current_player->getPos()]->getName() << endl;

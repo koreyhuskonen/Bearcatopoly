@@ -22,9 +22,11 @@ int turnStartMenu(Player *player){
     return choice;
 }
 
-
-
-
+void leaveJail(Player *player){
+    player->resetJailTime();
+    player->switchJail();
+    player->setPos(10);
+}
 
 int rollDice(){
     int roll_1, roll_2, move;
