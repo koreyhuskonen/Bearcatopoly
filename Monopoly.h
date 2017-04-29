@@ -56,7 +56,7 @@ public:
     Location(string lname, int lpos, int lprice, int lmort)
         : name(lname), position(lpos), price(lprice), mortgage(lmort)
     {
-        owned = false; owner = NULL;
+        owner = NULL;
     }
 
     int getPos(){return position;}
