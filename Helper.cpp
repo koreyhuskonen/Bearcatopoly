@@ -93,6 +93,7 @@ void drawCard(Player *player){
         cout << "There's construction on campus. Move back 3 spaces." << endl;
         int current_position = player->getPos();
         player->setPos(current_position - 3);
+        if(player->getPos() < 0) player->setPos(39);
     }
     else if(card_number == 8){
         cout << "You won a scholarship contest. (Collect $150)" << endl;
