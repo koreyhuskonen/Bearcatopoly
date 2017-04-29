@@ -33,7 +33,13 @@ public:
     void switchJail(){jailed = !jailed;}
     bool getJailPass(){return jail_pass;}
     void switchJailPass(){jail_pass = !jail_pass;}
-    void move(int amount){position = (position + amount) % 40;}
+    void move(int amount){
+        if(position + amount > 39){
+            cout << "You passed Go! Collect $200." << endl;
+            money += 200;
+        }
+        position = (position + amount) % 40;
+    }
     bool canAfford(int price){return money - price > 0;}
     vector<Property> getProperties(){return properties;}
     vector<Eatery> getEateries(){return eateries;}
