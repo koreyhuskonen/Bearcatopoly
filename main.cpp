@@ -15,12 +15,14 @@ int main(){
          << "Welcome to the University of Cincinnati!!!" << endl
          << "It's time to play some..." << endl
          << "_________ BEARCATOPOLY _________" << "\n\n"
-         << "Phase 1 - Player Creation" << endl
-         << "Enter the number of players: ";
+         << "Phase 1 - Player Creation" << endl;
     string player_name, input;
-    int num_players;
-    getline(cin, input);
-    stringstream(input) >> num_players;
+    int num_players = 0;
+    while(num_players < 2 || num_players > 5){
+        cout << "Enter the number of players (2-5): ";
+        getline(cin, input);
+        stringstream(input) >> num_players;
+    }
     for(int i = 0; i < num_players; i++){
         cout << "Enter Player " << i+1 << "'s name: ";
         getline(cin, player_name);
@@ -57,12 +59,12 @@ int main(){
                 cout << endl;
                 choice = turnStartMenu(current_player);
                 if(choice == 1){
-                    // roll = rollDice();
-                    // cout << "Your roll: " << roll << endl;
+                    roll = rollDice();
+                    cout << "Your roll: " << roll << endl;
 
-                    cout << "Enter your roll: ";
-                    getline(cin, input);
-                    stringstream(input) >> roll;
+                    // cout << "Enter your roll: ";
+                    // getline(cin, input);
+                    // stringstream(input) >> roll;
                     current_player->move(roll);
 
                     Location *current_location = BOARD[current_player->getPos()];
