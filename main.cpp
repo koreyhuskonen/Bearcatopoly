@@ -35,11 +35,12 @@ int main(){
         for(int z = 0; z < PLAYERS.size(); z++){
             cout << endl;
             current_player = &PLAYERS[z];
-            choice = turnStartMenu(current_player);
-            cout << current_player->getName() << "' s position: " << current_player->getPos() << endl;
+            cout << current_player->getName() << "'s position: " << current_player->getPos() << endl;
             cout << current_player->getName() << "'s location: " << BOARD[current_player->getPos()]->getName() << endl;
             cout << current_player->getName() << "'s money: " << current_player->getMoney() << endl;
-
+            current_player->displayProperties();
+            cout << endl;
+            choice = turnStartMenu(current_player);
             if(choice == 1){
                 // roll = rollDice();
                 // cout << "Your roll: " << roll << endl;
@@ -104,7 +105,6 @@ int main(){
                 if(!sl){
                     cout << "You did not enter a valid property name." << endl;
                 } else if(dynamic_cast<Property*>(sl)->buyHouse(current_player)){
-                    cout << "Made it here" << endl;
                     if(dynamic_cast<Property*>(sl)->getHouses() == 1){
                         cout << "There is now 1 house on " << sl->getName() << "." << endl;
                     } else if(dynamic_cast<Property*>(sl)->getHouses() == 5){
@@ -119,7 +119,8 @@ int main(){
             }
 
 
-            cout << current_player->getName() << "' s position: " << current_player->getPos() << endl;
+            choice = turnEndMenu(current_player);
+            cout << current_player->getName() << "'s position: " << current_player->getPos() << endl;
             cout << current_player->getName() << "'s location: " << BOARD[current_player->getPos()]->getName() << endl;
             cout << current_player->getName() << "'s money: " << current_player->getMoney() << endl;
             current_player->displayProperties();

@@ -22,6 +22,22 @@ int turnStartMenu(Player *player){
     return choice;
 }
 
+int turnEndMenu(Player *player){
+    int choice; string mystr;
+    cout << player->getName() << ", it's still your turn. What would you like to do?" << endl
+         << "Options:" << endl
+         << "1. Display your properties" << endl
+         << "2. Sell some of your properties" << endl
+         << "3. Build houses on your properties" << endl
+         << "4. End your turn" << endl;
+    do {
+        cout << "Enter your choice: ";
+        getline(cin, mystr);
+        stringstream(mystr) >> choice;
+    } while(choice < 1 || choice > 4);
+    return choice;
+}
+
 
 
 

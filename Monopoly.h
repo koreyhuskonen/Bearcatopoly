@@ -100,7 +100,7 @@ public:
         if(!(owner == player)) return false;
         owner->addMoney(mortgage);
         owner->removeProperty(*this);
-        owner = NULL;
+        owner = NULL; houses = 0;
         return true;
     }
     string getColor(){return color;}
