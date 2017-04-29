@@ -42,9 +42,10 @@ int main(){
                     cout << "Use your Get Out of Jail Free pass? (y/n)" << endl;
                     getline(cin, input);
                     if(input == "y") leaveJail(current_player);
+                } else {
+                    current_player->incJailTime();
+                    continue;
                 }
-                current_player->incJailTime();
-                continue;
             } else if(current_player->inJail()) leaveJail(current_player);
 
             cout << current_player->getName() << "'s position: " << current_player->getPos() << endl;
