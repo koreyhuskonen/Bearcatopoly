@@ -119,7 +119,8 @@ int main(){
             }
 
 
-            choice = turnEndMenu(current_player);
+            cout << current_player->getName() << ", press enter when you're ready to end your turn.";
+            getline(cin,input);
             cout << current_player->getName() << "'s position: " << current_player->getPos() << endl;
             cout << current_player->getName() << "'s location: " << BOARD[current_player->getPos()]->getName() << endl;
             cout << current_player->getName() << "'s money: " << current_player->getMoney() << endl;
