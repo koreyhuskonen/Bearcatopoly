@@ -62,7 +62,7 @@ int main(){
                             cout << "You paid $" << current_location->getRent(roll) << endl;
                         } else {
                             current_location->payRent(current_player);
-                            cout << "You paid $" << current_location->getRent() << endl;                            
+                            cout << "You paid $" << current_location->getRent() << endl;
                         }
                     } else {
                         cout << "Would you like to buy it? (y/n)" << endl;
@@ -86,7 +86,14 @@ int main(){
                 cout << "Enter the name of the property you'd like to sell: ";
                 string property_name; Location *selected_location;
                 getline(cin, property_name);
-
+                for(int i = 0; i < 40; i++){
+                    if(BOARD[i]->getName() == property_name) selected_location = BOARD[i];
+                }
+                if(selected_location->sellLocation(current_player)){
+                    cout << "You sold " << selected_location->getName() << " for $" << selected_location->getMortgage() << "." << endl;
+                } else {
+                    cout << "You cannot sell a property that you do not own." << endl;
+                }
             }
 
 

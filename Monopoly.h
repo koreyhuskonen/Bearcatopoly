@@ -73,7 +73,7 @@ public:
         rent_payer->subMoney(rent);
         owner->addMoney(rent);
     }
-    virtual int payRent(Player *rent_payer, int roll){return 0;}
+    virtual void payRent(Player *rent_payer, int roll){return;}
     void setOwner(Player *new_owner){owner = new_owner;}
     virtual bool buyLocation(Player *player){return 0;}
     virtual bool sellLocation(Player *player){return 0;}
@@ -165,9 +165,9 @@ public:
         if(count == 1) return dice_roll * 4;
         return dice_roll * 10;
     }
-    void payRent(Player &rent_payer, int dice_roll){
+    void payRent(Player *rent_payer, int dice_roll){
         int rent = getRent(dice_roll);
-        rent_payer.subMoney(rent);
+        rent_payer->subMoney(rent);
         owner->addMoney(rent);
     }
 };
