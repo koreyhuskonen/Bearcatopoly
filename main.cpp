@@ -41,7 +41,8 @@ int main(){
                 if(current_player->getJailPass()){
                     cout << "Use your Get Out of Jail Free pass? (y/n)" << endl;
                     getline(cin, input);
-                    if(input == "y") leaveJail(current_player);
+                    if(input != "y") continue;
+                    leaveJail(current_player);
                 } else {
                     current_player->incJailTime();
                     continue;
