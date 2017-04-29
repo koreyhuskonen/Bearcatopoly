@@ -54,7 +54,6 @@ int main(){
             cout << current_player->getName() << "'s money: " << current_player->getMoney() << endl;
             current_player->displayProperties();
             cout << endl;
-            while(choice != 1)
             choice = turnStartMenu(current_player);
             if(choice == 1){
                 // roll = rollDice();
@@ -73,6 +72,8 @@ int main(){
                     drawCard(current_player);
                     if(current_player->getPos() == 420) continue;
                 }
+                current_location = BOARD[current_player->getPos()];
+
                 if(current_location->getType() != "other"){
                     cout << "You landed on " << current_location->getName() << "." << endl;
                     if(current_location->isOwned()){
