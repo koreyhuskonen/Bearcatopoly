@@ -57,12 +57,12 @@ int main(){
                 cout << endl;
                 choice = turnStartMenu(current_player);
                 if(choice == 1){
-                    roll = rollDice();
-                    cout << "Your roll: " << roll << endl;
+                    // roll = rollDice();
+                    // cout << "Your roll: " << roll << endl;
 
-                    // cout << "Enter your roll: ";
-                    // getline(cin, input);
-                    // stringstream(input) >> roll;
+                    cout << "Enter your roll: ";
+                    getline(cin, input);
+                    stringstream(input) >> roll;
                     current_player->move(roll);
 
                     Location *current_location = BOARD[current_player->getPos()];
@@ -71,22 +71,27 @@ int main(){
                         cout << "You landed on a Bearcat Card!" << endl;
                         cout << "The card says: ";
                         drawCard(current_player);
-                        if(current_player->getPos() == 420) continue;
+                        if(current_player->getPos() == 420) break;
+                        current_location = BOARD[current_player->getPos()];
+                    } else {
+                        cout << "You landed on " << current_location->getName() << "." << endl;
                     }
-                    current_location = BOARD[current_player->getPos()];
-                    cout << "You landed on " << current_location->getName() << "." << endl;
                     if(current_location->getType() != "other"){
                         if(current_location->isOwned()){
-                            cout << current_location->getOwner() << " already owns this property. You'll have to pay rent." << endl;
-                            if(current_location->getType() == "eatery"){
-                                current_location->payRent(current_player, roll);
-                                cout << "You paid $" << current_location->getRent(roll) << endl;
+                            if(current_location->getOwner() == current_player->getName()){
+                                cout << "You already own this property." << endl;
                             } else {
-                                current_location->payRent(current_player);
-                                cout << "You paid $" << current_location->getRent() << endl;
+                                cout << current_location->getOwner() << " already owns this property. You'll have to pay rent." << endl;
+                                if(current_location->getType() == "eatery"){
+                                    current_location->payRent(current_player, roll);
+                                    cout << "You paid $" << current_location->getRent(roll) << endl;
+                                } else {
+                                    current_location->payRent(current_player);
+                                    cout << "You paid $" << current_location->getRent() << endl;
+                                }
                             }
                         } else {
-                            cout << "Would you like to buy it? (y/n)" << endl;
+                            cout << "Nobody owns this property. Would you like to buy it for $" << current_location->getPrice() << "? (y/n)" << endl;
                             getline(cin, input);
                             if(input == "y"){
                                 if(current_location->buyLocation(current_player)){
@@ -97,12 +102,13 @@ int main(){
                             }
                         }
                     } else if(current_location->getName() == "Income Tax"){
+                        cout << "You landed on " << current_location->getName() << "." << endl;
                         int sum = 0;
                         for(int i = 0; i < current_player->getProperties().size(); i++) sum += current_player->getProperties()[i].getPrice();
                         for(int i = 0; i < current_player->getEateries().size(); i++) sum += current_player->getEateries()[i].getPrice();
                         for(int i = 0; i < current_player->getStreets().size(); i++) sum += current_player->getStreets()[i].getPrice();
                         cout << "Your total worth is $" << sum << "." << endl
-                             << "So you'll have to pay $" << sum*0.1 << " in taxes." << endl;
+                             << "So you paid $" << sum*0.1 << " in taxes." << endl;
                         current_player->subMoney(sum*0.1);
                     } else if(current_location->getName() == "Luxury Tax"){
                         cout << "You paid a luxury tax of $100." << endl;
@@ -111,7 +117,7 @@ int main(){
                         cout << "You went to jail." << endl;
                         current_player->setPos(420);
                         current_player->switchJail();
-                        continue;
+                        break;
                     }
                 } else if(choice == 2){
                     current_player->displayProperties();
@@ -147,18 +153,19 @@ int main(){
                             cout << "There are now " << dynamic_cast<Property*>(sl)->getHouses() << " houses on " << sl->getName() << "." << endl;
                         }
                     } else {
-                        cout << "You cannot buy a house on this property." << endl;
+                        cout << "You cannot build a house on this property." << endl;
                     }
 
                 }
             }
+                choice = 0;
                 cout << current_player->getName() << ", press enter when you're ready to end your turn.";
                 getline(cin,input);
+                if(current_player->inJail()) break;
                 cout << current_player->getName() << "'s position: " << current_player->getPos() << endl;
                 cout << current_player->getName() << "'s location: " << BOARD[current_player->getPos()]->getName() << endl;
                 cout << current_player->getName() << "'s money: " << current_player->getMoney() << endl;
                 current_player->displayProperties();
-                choice = 0;
         }
 
         for(int i = 0; i < PLAYERS.size(); i++){
