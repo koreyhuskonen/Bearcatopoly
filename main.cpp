@@ -57,8 +57,13 @@ int main(){
                     cout << "You landed on " << current_location->getName() << "." << endl;
                     if(current_location->isOwned()){
                         cout << current_location->getOwner() << " already owns this property. You'll have to pay rent." << endl;
-                        current_location->payRent(current_player);
-                        cout << "You paid $" << current_location->getRent() << endl;
+                        if(current_location->getType() == "eatery"){
+                            current_location->payRent(current_player, roll);
+                            cout << "You paid $" << current_location->getRent(roll) << endl;
+                        } else {
+                            current_location->payRent(current_player);
+                            cout << "You paid $" << current_location->getRent() << endl;                            
+                        }
                     } else {
                         cout << "Would you like to buy it? (y/n)" << endl;
                         getline(cin, input);
@@ -101,9 +106,15 @@ int main(){
     // myptr->buyLocation(&bob);
     // cout << "first rent: " << myptr->getRent() << endl;
     // cout << bob.getProperties().size() << endl;
-    // myptr->buyHouse();
-    // cout << "Houses: " << myptr->getHouses() << endl;
+    // dynamic_cast<Property*>(myptr)->buyHouse();
+    // cout << "Houses: " << dynamic_cast<Property*>(myptr)->getHouses() << endl;
     // cout << "2nd rent: " << myptr->getRent() << endl;
+    // dynamic_cast<Property*>(myptr)->buyHouse();
+    // cout << "Houses: " << dynamic_cast<Property*>(myptr)->getHouses() << endl;
+    // cout << "3rd rent: " << myptr->getRent() << endl;
+    // dynamic_cast<Property*>(myptr)->buyHouse();
+    // cout << "Houses: " << dynamic_cast<Property*>(myptr)->getHouses() << endl;
+    // cout << "4th rent: " << myptr->getRent() << endl;
     //
     // myptr->sellLocation(&bob);
     //

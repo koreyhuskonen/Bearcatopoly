@@ -67,11 +67,13 @@ public:
     string getOwner(){return owner->getName();}
     string getType(){return type;}
     virtual int getRent(){return 0;}
+    virtual int getRent(int roll){return 0;}
     virtual void payRent(Player *rent_payer){
         int rent = getRent();
         rent_payer->subMoney(rent);
         owner->addMoney(rent);
     }
+    virtual int payRent(Player *rent_payer, int roll){return 0;}
     void setOwner(Player *new_owner){owner = new_owner;}
     virtual bool buyLocation(Player *player){return 0;}
     virtual bool sellLocation(Player *player){return 0;}
