@@ -39,7 +39,7 @@ int main(){
             if(current_player->inJail() && current_player->getJailTime() < 3){
                 cout << current_player->getName() << ", you're in jail." << endl;
                 current_player->incJailTime();
-                break;
+                continue;
             } else if(current_player->inJail()){
                 current_player->resetJailTime();
                 current_player->switchJail();
@@ -104,7 +104,7 @@ int main(){
                     cout << "You went to jail." << endl;
                     current_player->setPos(420);
                     current_player->switchJail();
-                    break;
+                    continue;
                 }
             } else if(choice == 2){
                 current_player->displayProperties();
