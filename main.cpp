@@ -84,16 +84,40 @@ int main(){
                 current_player->displayProperties();
             } else if(choice == 3){
                 cout << "Enter the name of the property you'd like to sell: ";
-                string property_name; Location *selected_location;
+                string property_name; Location *selected_location = NULL;
                 getline(cin, property_name);
                 for(int i = 0; i < 40; i++){
                     if(BOARD[i]->getName() == property_name) selected_location = BOARD[i];
                 }
-                if(selected_location->sellLocation(current_player)){
+                if(!selected_location){
+                    cout << "You did not enter a valid property name." << endl;
+                } else if(selected_location->sellLocation(current_player)){
                     cout << "You sold " << selected_location->getName() << " for $" << selected_location->getMortgage() << "." << endl;
                 } else {
                     cout << "You cannot sell a property that you do not own." << endl;
                 }
+            } else if(choice == 4){
+                cout << "Enter the name of the property you'd like to build houses on: ";
+                string property_name; Location *sl = NULL;
+                getline(cin, property_name);
+                for(int i = 0; i < 40; i++){
+                    if(BOARD[i]->getName() == property_name) sl = BOARD[i];
+                }
+                if(!sl){
+                    cout << "You did not enter a valid property name." << endl;
+                } else if(dynamic_cast<Property*>(sl)->buyHouse(current_player)){
+                    cout << "Made it here" << endl;
+                    if(dynamic_cast<Property*>(sl)->getHouses() == 1){
+                        cout << "There is now 1 house on " << sl->getName() << "." << endl;
+                    } else if(dynamic_cast<Property*>(sl)->getHouses() == 5){
+                        cout << "There is now 1 hotel on " << sl->getName() << "." << endl;
+                    } else {
+                        cout << "There are now " << dynamic_cast<Property*>(sl)->getHouses() << " houses on " << sl->getName() << "." << endl;
+                    }
+                } else {
+                    cout << "You cannot buy a house on this property." << endl;
+                }
+
             }
 
 
@@ -106,20 +130,20 @@ int main(){
     }
 
     // Player bob("bob");
-    // Property* ogptr = &Baldwin;
-    // Location* myptr = ogptr;
+    // Player sandy("bob");
+    // Location* myptr = &Baldwin;
     // Langsam.buyLocation(&bob);
     // MarketPointe.buyLocation(&bob);
     // myptr->buyLocation(&bob);
     // cout << "first rent: " << myptr->getRent() << endl;
     // cout << bob.getProperties().size() << endl;
-    // dynamic_cast<Property*>(myptr)->buyHouse();
+    // dynamic_cast<Property*>(myptr)->buyHouse(&bob);
     // cout << "Houses: " << dynamic_cast<Property*>(myptr)->getHouses() << endl;
     // cout << "2nd rent: " << myptr->getRent() << endl;
-    // dynamic_cast<Property*>(myptr)->buyHouse();
+    // dynamic_cast<Property*>(myptr)->buyHouse(&sandy);
     // cout << "Houses: " << dynamic_cast<Property*>(myptr)->getHouses() << endl;
     // cout << "3rd rent: " << myptr->getRent() << endl;
-    // dynamic_cast<Property*>(myptr)->buyHouse();
+    // dynamic_cast<Property*>(myptr)->buyHouse(&bob);
     // cout << "Houses: " << dynamic_cast<Property*>(myptr)->getHouses() << endl;
     // cout << "4th rent: " << myptr->getRent() << endl;
     //

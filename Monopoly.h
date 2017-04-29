@@ -116,15 +116,16 @@ public:
         if (color == "brown" || color == "dark blue") return 2;
         return 3;
     }
-    bool canBuyHouse(){
+    bool canBuyHouse(Player *player){
+        if(player != owner || houses > 4) return false;
         int group_size = colorGroupSize(), count = 0;
         for(int i = 0; i < owner->getProperties().size(); i++){
             if(owner->getProperties()[i].getColor() == color) count++;
         }
-        return (count == group_size && owner->canAfford(house_price) && houses < 5);
+        return (count == group_size && owner->canAfford(house_price));
     }
-    bool buyHouse(){
-        if(!canBuyHouse()) return false;
+    bool buyHouse(Player *player){
+        if(!canBuyHouse(player)) return false;
         houses++;
         owner->subMoney(house_price);
         return true;
