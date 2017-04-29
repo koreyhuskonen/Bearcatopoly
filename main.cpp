@@ -74,9 +74,8 @@ int main(){
                         if(current_player->getPos() == 420) continue;
                     }
                     current_location = BOARD[current_player->getPos()];
-
+                    cout << "You landed on " << current_location->getName() << "." << endl;
                     if(current_location->getType() != "other"){
-                        cout << "You landed on " << current_location->getName() << "." << endl;
                         if(current_location->isOwned()){
                             cout << current_location->getOwner() << " already owns this property. You'll have to pay rent." << endl;
                             if(current_location->getType() == "eatery"){
