@@ -26,6 +26,7 @@ void leaveJail(Player *player){
     player->resetJailTime();
     player->switchJail();
     player->setPos(10);
+    cout << player->getName() << ", you got out of jail." << endl;
 }
 
 int rollDice(){
@@ -100,7 +101,7 @@ void drawCard(Player *player){
         player->addMoney(150);
     }
     else if(card_number == 9){
-        cout << "The college basketball season has begun. You purchase a UC basketball season ticket. (Pay $50)" << endl;
+        cout << "You purchased a UC basketball season ticket. (Pay $50)" << endl;
         player->subMoney(50);
     }
     else if(card_number == 10){

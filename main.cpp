@@ -28,10 +28,10 @@ int main(){
         PLAYERS.push_back(player_temp);
     }
     cout << endl << "Phase 2 - Game Play" << endl;
-    int round_count = 1, choice = 0, roll;
+    int turn_count = 1, choice = 0, roll;
     Player *current_player;
     while(PLAYERS.size() > 1){
-
+        cout << "_____ Turn " << turn_count << " _____" << endl;
         for(int z = 0; z < PLAYERS.size(); z++){
             cout << endl;
             current_player = &PLAYERS[z];
@@ -41,7 +41,7 @@ int main(){
                 if(current_player->getJailPass()){
                     cout << "Use your Get Out of Jail Free pass? (y/n)" << endl;
                     getline(cin, input);
-                    if(input != "y") continue;
+                    if(input != "y" && input != "yes" && input != "Yes") continue;
                     leaveJail(current_player);
                 } else {
                     current_player->incJailTime();
@@ -93,7 +93,7 @@ int main(){
                         } else {
                             cout << "Nobody owns this property. Would you like to buy it for $" << current_location->getPrice() << "? (y/n)" << endl;
                             getline(cin, input);
-                            if(input == "y"){
+                            if(input == "y" || input == "yes" || input == "Yes"){
                                 if(current_location->buyLocation(current_player)){
                                     cout << "Congratulations! You bought " << current_location->getName() << "!" << endl;
                                 } else {
@@ -130,10 +130,16 @@ int main(){
                     }
                     if(!selected_location){
                         cout << "You did not enter a valid property name." << endl;
-                    } else if(selected_location->sellLocation(current_player)){
-                        cout << "You sold " << selected_location->getName() << " for $" << selected_location->getMortgage() << "." << endl;
                     } else {
-                        cout << "You cannot sell a property that you do not own." << endl;
+                        cout << "Sell " << selected_location->getName() << " for $" << selected_location->getMortgage() << "? (y/n)" << endl;
+                        getline(cin, input);
+                        if(input == "y" || input == "yes" || input == "Yes"){
+                            if(selected_location->sellLocation(current_player)){
+                                cout << "You sold " << selected_location->getName() << " for $" << selected_location->getMortgage() << "." << endl;
+                            } else {
+                                cout << "You cannot sell a property that you do not own." << endl;
+                            }
+                        }
                     }
                 } else if(choice == 4){
                     cout << "Enter the name of the property you'd like to build houses on: ";
@@ -161,7 +167,7 @@ int main(){
                 choice = 0;
                 cout << current_player->getName() << ", press enter when you're ready to end your turn.";
                 getline(cin,input);
-                if(current_player->inJail()) break;
+                if(current_player->inJail()) continue;
                 cout << current_player->getName() << "'s position: " << current_player->getPos() << endl;
                 cout << current_player->getName() << "'s location: " << BOARD[current_player->getPos()]->getName() << endl;
                 cout << current_player->getName() << "'s money: " << current_player->getMoney() << endl;
@@ -175,6 +181,7 @@ int main(){
                 PLAYERS.erase(PLAYERS.begin()+i);
             }
         }
+        turn_count++;
     }
     cout << endl << "Phase 3 - Victory" << endl
          << "Congratulations, " << PLAYERS[0].getName() << ". You won Bearcatopoly." << endl
