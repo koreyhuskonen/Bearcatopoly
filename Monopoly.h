@@ -75,6 +75,7 @@ public:
     }
     void setOwner(Player *new_owner){owner = new_owner;}
     virtual bool buyLocation(Player *player){return 0;}
+    virtual bool sellLocation(Player *player){return 0;}
 };
 
 class Property : public Location {
@@ -94,10 +95,12 @@ public:
         setOwner(player);
         return true;
     }
-    void sellLocation(){
+    bool sellLocation(Player *player){
+        if(!(owner == player)) return false;
         owner->addMoney(mortgage);
         owner->removeProperty(*this);
         owner = NULL;
+        return true;
     }
     string getColor(){return color;}
     int getRent(){
@@ -113,7 +116,7 @@ public:
         return 3;
     }
     bool canBuyHouse(){
-        int group_size = colorGroupSize(), count;
+        int group_size = colorGroupSize(), count = 0;
         for(int i = 0; i < owner->getProperties().size(); i++){
             if(owner->getProperties()[i].getColor() == color) count++;
         }
@@ -131,6 +134,7 @@ public:
         houses -= amount;
         return true;
     }
+    int getHouses(){return houses;}
 };
 
 class Eatery : public Location {
@@ -147,10 +151,12 @@ public:
         setOwner(player);
         return true;
     }
-    void sellLocation(){
+    bool sellLocation(Player *player){
+        if(!(owner == player)) return false;
         owner->addMoney(mortgage);
         owner->removeEatery(*this);
         owner = NULL;
+        return true;
     }
     int getRent(int dice_roll){
         int count = 0;
@@ -179,10 +185,12 @@ public:
         setOwner(player);
         return true;
     }
-    void sellLocation(){
+    bool sellLocation(Player *player){
+        if(!(owner == player)) return false;
         owner->addMoney(mortgage);
         owner->removeStreet(*this);
         owner = NULL;
+        return true;
     }
     int getRent(){
         int count = 0;

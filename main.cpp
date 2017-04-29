@@ -73,6 +73,11 @@ int main(){
                 }
             } else if(choice == 2){
                 current_player->displayProperties();
+            } else if(choice == 3){
+                cout << "Enter the name of the property you'd like to sell: ";
+                string property_name; Location *selected_location;
+                getline(cin, property_name);
+
             }
 
 
@@ -85,10 +90,20 @@ int main(){
     }
 
     // Player bob("bob");
-    // Location* myptr;
-    // myptr = &Calhoun;
+    // Property* myptr = &Baldwin;
+    // Langsam.buyLocation(&bob);
+    // MarketPointe.buyLocation(&bob);
     // myptr->buyLocation(&bob);
+    // cout << "first rent: " << myptr->getRent() << endl;
     // cout << bob.getProperties().size() << endl;
+    // myptr->buyHouse();
+    // cout << "Houses: " << myptr->getHouses() << endl;
+    // cout << "2nd rent: " << myptr->getRent() << endl;
+    //
+    // myptr->sellLocation(&bob);
+    //
+    // cout << bob.getProperties().size() << endl;
+
 
 
 }

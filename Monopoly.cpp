@@ -60,7 +60,7 @@ void Player::addEatery(Eatery &new_eatery){eateries.push_back(new_eatery);}
 void Player::addStreet(Street &new_street){streets.push_back(new_street);}
 void Player::removeProperty(Property &property){
     int i = 0;
-    while(property.getName() != properties[i].getName()) i++;
+    while(properties[i].getName() != property.getName()) i++;
     properties.erase(properties.begin()+i);
 }
 void Player::removeEatery(Eatery &eatery){
