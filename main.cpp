@@ -43,6 +43,7 @@ int main(){
             } else if(current_player->inJail()){
                 current_player->resetJailTime();
                 current_player->switchJail();
+                current_player->setPos(10);
             }
 
             cout << current_player->getName() << "'s position: " << current_player->getPos() << endl;
@@ -103,6 +104,7 @@ int main(){
                     cout << "You went to jail." << endl;
                     current_player->setPos(420);
                     current_player->switchJail();
+                    break;
                 }
             } else if(choice == 2){
                 current_player->displayProperties();
