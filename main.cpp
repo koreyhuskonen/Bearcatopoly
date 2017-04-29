@@ -54,6 +54,7 @@ int main(){
             cout << current_player->getName() << "'s money: " << current_player->getMoney() << endl;
             current_player->displayProperties();
             cout << endl;
+            while(choice != 1)
             choice = turnStartMenu(current_player);
             if(choice == 1){
                 // roll = rollDice();
@@ -66,6 +67,12 @@ int main(){
 
                 Location *current_location = BOARD[current_player->getPos()];
 
+                if(current_location->getName() == "Bearcat Card"){
+                    cout << "You landed on a Bearcat Card!" << endl;
+                    cout << "The card says: ";
+                    drawCard(current_player);
+                    if(current_player->getPos() == 420) continue;
+                }
                 if(current_location->getType() != "other"){
                     cout << "You landed on " << current_location->getName() << "." << endl;
                     if(current_location->isOwned()){
@@ -88,11 +95,6 @@ int main(){
                             }
                         }
                     }
-                } else if(current_location->getName() == "Bearcat Card"){
-                    cout << "You landed on a Bearcat Card!" << endl;
-                    cout << "The card says: ";
-                    drawCard(current_player);
-                    if(current_player->getPos() == 420) continue;
                 } else if(current_location->getName() == "Income Tax"){
                     int sum = 0;
                     for(int i = 0; i < current_player->getProperties().size(); i++) sum += current_player->getProperties()[i].getPrice();
