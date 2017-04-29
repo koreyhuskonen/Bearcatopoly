@@ -35,6 +35,16 @@ int main(){
         for(int z = 0; z < PLAYERS.size(); z++){
             cout << endl;
             current_player = &PLAYERS[z];
+
+            if(current_player->inJail() && current_player->getJailTime() < 3){
+                cout << current_player->getName() << ", you're in jail." << endl;
+                current_player->incJailTime();
+                break;
+            } else if(current_player->inJail()){
+                current_player->resetJailTime();
+                current_player->switchJail();
+            }
+
             cout << current_player->getName() << "'s position: " << current_player->getPos() << endl;
             cout << current_player->getName() << "'s location: " << BOARD[current_player->getPos()]->getName() << endl;
             cout << current_player->getName() << "'s money: " << current_player->getMoney() << endl;
@@ -89,6 +99,10 @@ int main(){
                 } else if(current_location->getName() == "Luxury Tax"){
                     cout << "You paid a luxury tax of $100." << endl;
                     current_player->subMoney(100);
+                } else if(current_location->getName() == "Go To Jail"){
+                    cout << "You went to jail." << endl;
+                    current_player->setPos(420);
+                    current_player->switchJail();
                 }
             } else if(choice == 2){
                 current_player->displayProperties();

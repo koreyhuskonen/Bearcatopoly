@@ -55,7 +55,10 @@ void drawCard(Player *player){
     }
     else if(card_number == 1){
         cout << "You acquired a Get Out of Jail Free Pass." << endl;
-        if(player->getJailPass() == true) player->addMoney(50);
+        if(player->getJailPass() == true){
+            cout << "But you can only have one pass at a time, so you sold the new pass for $50." << endl;
+            player->addMoney(50);
+        }
         if(player->getJailPass() == false) player->switchJailPass();
     }
     else if(card_number == 2){

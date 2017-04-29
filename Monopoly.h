@@ -11,17 +11,19 @@ class Street;
 
 class Player {
     string name;
-    int position, money;
+    int position, money, jail_time;
     bool jailed, jail_pass;
     vector<Property> properties;
     vector<Eatery> eateries;
     vector<Street> streets;
 public:
-    Player(string player_name){
-        name = player_name;
+    Player(string player_name) : name(player_name)
+    {
         position = 0;
         money = 1500;
         jailed = false;
+        jail_pass = false;
+        jail_time = 0;
     }
     string getName(){return name;}
     int getPos(){return position;}
@@ -33,6 +35,9 @@ public:
     void switchJail(){jailed = !jailed;}
     bool getJailPass(){return jail_pass;}
     void switchJailPass(){jail_pass = !jail_pass;}
+    int getJailTime(){return jail_time;}
+    void incJailTime(){jail_time++;}
+    void resetJailTime(){jail_time = 0;}
     void move(int amount){
         if(position + amount > 39){
             cout << "You passed Go! Collect $200." << endl;
