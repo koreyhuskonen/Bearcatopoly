@@ -89,6 +89,7 @@ int main(){
                     cout << "You landed on a Bearcat Card!" << endl;
                     cout << "The card says: ";
                     drawCard(current_player);
+                    if(current_player->getPos() == 420) continue;
                 } else if(current_location->getName() == "Income Tax"){
                     int sum = 0;
                     for(int i = 0; i < current_player->getProperties().size(); i++) sum += current_player->getProperties()[i].getPrice();
