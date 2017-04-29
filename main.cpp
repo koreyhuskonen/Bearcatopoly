@@ -36,10 +36,11 @@ int main(){
             cout << endl;
             current_player = &PLAYERS[z];
             choice = turnStartMenu(current_player);
-            cout << "CHOICE: " << choice << endl;
+            cout << current_player->getName() << "' s position: " << current_player->getPos() << endl;
+            cout << current_player->getName() << "'s location: " << BOARD[current_player->getPos()]->getName() << endl;
+            cout << current_player->getName() << "'s money: " << current_player->getMoney() << endl;
+
             if(choice == 1){
-                cout << "Current position: " << current_player->getPos() << endl;
-                cout << "Current location: " << BOARD[current_player->getPos()]->getName() << endl;
                 // roll = rollDice();
                 // cout << "Your roll: " << roll << endl;
 
@@ -49,9 +50,6 @@ int main(){
                 current_player->move(roll);
 
                 Location *current_location = BOARD[current_player->getPos()];
-                cout << "New position: " << current_player->getPos() << endl;
-                cout << "New location: " << current_location->getName() << endl;
-                cout << current_player->getName() << "'s money: " << current_player->getMoney() << endl;
 
                 if(current_location->getType() != "other"){
                     cout << "You landed on " << current_location->getName() << "." << endl;
@@ -121,7 +119,9 @@ int main(){
             }
 
 
-
+            cout << current_player->getName() << "' s position: " << current_player->getPos() << endl;
+            cout << current_player->getName() << "'s location: " << BOARD[current_player->getPos()]->getName() << endl;
+            cout << current_player->getName() << "'s money: " << current_player->getMoney() << endl;
             current_player->displayProperties();
 
 
