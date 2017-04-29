@@ -40,8 +40,12 @@ int main(){
             if(choice == 1){
                 cout << "Current position: " << current_player->getPos() << endl;
                 cout << "Current location: " << BOARD[current_player->getPos()]->getName() << endl;
-                roll = rollDice();
-                cout << "Your roll: " << roll << endl;
+                // roll = rollDice();
+                // cout << "Your roll: " << roll << endl;
+
+                cout << "Enter your roll: ";
+                getline(cin, input);
+                stringstream(input) >> roll;
                 current_player->move(roll);
 
                 Location *current_location = BOARD[current_player->getPos()];
