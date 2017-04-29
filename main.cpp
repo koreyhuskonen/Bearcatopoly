@@ -83,9 +83,12 @@ int main(){
                     for(int i = 0; i < current_player->getProperties().size(); i++) sum += current_player->getProperties()[i].getPrice();
                     for(int i = 0; i < current_player->getEateries().size(); i++) sum += current_player->getEateries()[i].getPrice();
                     for(int i = 0; i < current_player->getStreets().size(); i++) sum += current_player->getStreets()[i].getPrice();
-                    cout << "Your total worth is $" << sum << "."
+                    cout << "Your total worth is $" << sum << "." << endl
                          << "So you'll have to pay $" << sum*0.1 << " in taxes." << endl;
                     current_player->subMoney(sum*0.1);
+                } else if(current_location->getName() == "Luxury Tax"){
+                    cout << "You paid a luxury tax of $100." << endl;
+                    current_player->subMoney(100);
                 }
             } else if(choice == 2){
                 current_player->displayProperties();
