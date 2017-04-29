@@ -164,35 +164,31 @@ int main(){
 
         for(int i = 0; i < PLAYERS.size(); i++){
             if(PLAYERS[i].getMoney() < 0){
-                cout << PLAYERS[i].getName() << ", you have been eliminated. Thank you for playing." << endl;
+                cout << endl
+                     << PLAYERS[i].getName() << ", you have been eliminated. Thank you for playing." << endl;
                 PLAYERS.erase(PLAYERS.begin()+i);
             }
         }
-
     }
-
-    // Player bob("bob");
-    // Player sandy("bob");
-    // Location* myptr = &Baldwin;
-    // Langsam.buyLocation(&bob);
-    // MarketPointe.buyLocation(&bob);
-    // myptr->buyLocation(&bob);
-    // cout << "first rent: " << myptr->getRent() << endl;
-    // cout << bob.getProperties().size() << endl;
-    // dynamic_cast<Property*>(myptr)->buyHouse(&bob);
-    // cout << "Houses: " << dynamic_cast<Property*>(myptr)->getHouses() << endl;
-    // cout << "2nd rent: " << myptr->getRent() << endl;
-    // dynamic_cast<Property*>(myptr)->buyHouse(&sandy);
-    // cout << "Houses: " << dynamic_cast<Property*>(myptr)->getHouses() << endl;
-    // cout << "3rd rent: " << myptr->getRent() << endl;
-    // dynamic_cast<Property*>(myptr)->buyHouse(&bob);
-    // cout << "Houses: " << dynamic_cast<Property*>(myptr)->getHouses() << endl;
-    // cout << "4th rent: " << myptr->getRent() << endl;
-    //
-    // myptr->sellLocation(&bob);
-    //
-    // cout << bob.getProperties().size() << endl;
-
-
+    cout << endl << "Phase 3 - Victory" << endl
+         << "Congratulations, " << PLAYERS[0].getName() << ". You won Bearcatopoly." << endl
+         << "Now let us celebrate in song...\n\n"
+         << "O Cincinnati, magic name, I proudly to the world proclaim;\n"
+         << "No sweeter word ever charmed my ear,\n"
+         << "None to my heart was ever so dear,\n"
+         << "A fountain of eternal youth, a tower of strength, a rock of truth.\n\n"
+         << "Oh varsity, dear varsity, thy loyal children we will be,\n"
+         << "Thy loyal, loyal children we will be.\n\n"
+         << "Of wealth and station some may boast, of wide renown from coast to coast;\n"
+         << "None nobler teachings did instill,\n"
+         << "Than old McMicken on the hill,\n"
+         << "The black and red banner floats on high, let all join in the battle cry.\n\n"
+         << "Oh varsity, dear varsity, thy loyal children we will be,\n"
+         << "Thy loyal, loyal children we will be.\n\n"
+         << "Long may she live, her children's pride, and grow and prosper far and wide.\n"
+         << "At all time let our motto be: stand first and last for old UC,\n"
+         << "We dedicate with might and main, to Alma Mater this refrain:\n\n"
+         << "Oh varsity, dear varsity, thy loyal children we will be,\n"
+         << "Thy loyal, loyal children we will be.\n";
 
 }
