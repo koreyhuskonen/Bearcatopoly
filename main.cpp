@@ -101,7 +101,7 @@ int main(){
                 string property_name; Location *sl = NULL;
                 getline(cin, property_name);
                 for(int i = 0; i < 40; i++){
-                    if(BOARD[i]->getName() == property_name) sl = BOARD[i];
+                    if(BOARD[i]->getName() == property_name && BOARD[i]->getType() == "property") sl = BOARD[i];
                 }
                 if(!sl){
                     cout << "You did not enter a valid property name." << endl;
