@@ -90,7 +90,8 @@ int main(){
     }
 
     // Player bob("bob");
-    // Property* myptr = &Baldwin;
+    // Property* ogptr = &Baldwin;
+    // Location* myptr = ogptr;
     // Langsam.buyLocation(&bob);
     // MarketPointe.buyLocation(&bob);
     // myptr->buyLocation(&bob);

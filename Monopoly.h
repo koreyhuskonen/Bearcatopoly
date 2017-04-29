@@ -51,7 +51,6 @@ class Location {
 protected:
     int position, price, mortgage;
     string name, type;
-    bool owned;
     Player *owner;
 public:
     Location(string lname, int lpos, int lprice, int lmort)
@@ -64,7 +63,7 @@ public:
     int getPrice(){return price;}
     int getMortgage(){return mortgage;}
     string getName(){return name;}
-    bool isOwned(){return owned;}
+    bool isOwned(){return owner;}
     string getOwner(){return owner->getName();}
     string getType(){return type;}
     virtual int getRent(){return 0;}
