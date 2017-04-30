@@ -51,7 +51,7 @@ int main(){
                 }
             } else if(current_player->inJail()) leaveJail(current_player);
 
-            cout << current_player->getName() << "'s position: " << current_player->getPos() << endl;
+            // cout << current_player->getName() << "'s position: " << current_player->getPos() << endl;
             cout << current_player->getName() << "'s location: " << BOARD[current_player->getPos()]->getName() << endl;
             cout << current_player->getName() << "'s money: " << current_player->getMoney() << endl;
             current_player->displayProperties();
@@ -69,15 +69,14 @@ int main(){
 
                     Location *current_location = BOARD[current_player->getPos()];
 
-                    if(current_location->getName() == "Bearcat Card"){
+                    while(current_location->getName() == "Bearcat Card"){
                         cout << "You landed on a Bearcat Card!" << endl;
                         cout << "The card says: ";
                         drawCard(current_player);
                         if(current_player->getPos() == 420) break;
                         current_location = BOARD[current_player->getPos()];
-                    } else {
-                        cout << "You landed on " << current_location->getName() << "." << endl;
                     }
+                    cout << "You landed on " << current_location->getName() << "." << endl;
                     if(current_location->getType() != "other"){
                         if(current_location->isOwned()){
                             if(current_location->getOwner() == current_player->getName()){
@@ -86,10 +85,10 @@ int main(){
                                 cout << current_location->getOwner() << " already owns this property. You'll have to pay rent." << endl;
                                 if(current_location->getType() == "eatery"){
                                     current_location->payRent(current_player, roll);
-                                    cout << "You paid $" << current_location->getRent(roll) << endl;
+                                    cout << "You paid $" << current_location->getRent(roll) << "." << endl;
                                 } else {
                                     current_location->payRent(current_player);
-                                    cout << "You paid $" << current_location->getRent() << endl;
+                                    cout << "You paid $" << current_location->getRent() << "." << endl;
                                 }
                             }
                         } else {
@@ -104,7 +103,6 @@ int main(){
                             }
                         }
                     } else if(current_location->getName() == "Income Tax"){
-                        cout << "You landed on " << current_location->getName() << "." << endl;
                         int sum = 0;
                         for(int i = 0; i < current_player->getProperties().size(); i++) sum += current_player->getProperties()[i].getPrice();
                         for(int i = 0; i < current_player->getEateries().size(); i++) sum += current_player->getEateries()[i].getPrice();
