@@ -25,7 +25,7 @@ Property Turner("Turner Hall", "red", 21, 220, 110, 150, 18, 90, 250, 700, 875, 
 Property Teachers("Teachers College", "red", 23, 220, 110, 150, 18, 90, 250, 700, 875, 1050);
 Property UPA("UPA", "red", 24, 240, 120, 150, 20, 100, 300, 750, 925, 1100);
 Property ERC("ERC", "yellow", 26, 260, 130, 150, 22, 110, 330, 800, 975, 1150);
-Property Fifth_Third("Fifth Third Arena", "yellow", 27, 260, 130, 150, 22, 110, 330, 800, 975, 1150);
+Property Fifth_Third("Fifth Third", "yellow", 27, 260, 130, 150, 22, 110, 330, 800, 975, 1150);
 Property Sigma("Sigma Sigma", "yellow", 29, 280, 140, 150, 24, 120, 360, 850, 1025, 1200);
 Property McMicken("McMicken Hall", "green", 31, 300, 150, 200, 26, 130, 390, 900, 1100, 1275);
 Property Nippert("Nippert Stadium", "green", 32, 300, 150, 200, 26, 130, 390, 900, 1100, 1275);
@@ -38,7 +38,7 @@ Eatery Insomnia("Insomnia Cookies", 12, 150, 75);
 
 Street Calhoun_St("Calhoun St", 5, 200, 100);
 Street Clifton_Ave("Clifton Ave", 15, 200, 100);
-Street MLK_Dr("Martin Luther King Dr", 25, 200, 100);
+Street MLK_Dr("MLK Dr", 25, 200, 100);
 Street Jefferson_Ave("Jefferson Ave", 35, 200, 100);
 
 Other card1("Bearcat Card"), card2("Bearcat Card"), card3("Bearcat Card"),

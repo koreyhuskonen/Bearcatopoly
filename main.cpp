@@ -11,7 +11,7 @@
 using namespace std;
 
 int main(){
-    cout << "\n\n\n\n\n"
+    cout << "\n\n\n"
          << "Welcome to the University of Cincinnati!!!" << endl
          << "It's time to play some..." << endl
          << "_________ BEARCATOPOLY _________" << "\n\n"
@@ -33,9 +33,7 @@ int main(){
     int turn_count = 1, choice = 0, roll;
     Player *current_player;
     while(PLAYERS.size() > 1){
-        cout << "_____ Turn " << turn_count << " _____" << endl;
         for(int z = 0; z < PLAYERS.size(); z++){
-            cout << endl;
             current_player = &PLAYERS[z];
 
             if(current_player->inJail() && current_player->getJailTime() < 3){
@@ -51,32 +49,35 @@ int main(){
                 }
             } else if(current_player->inJail()) leaveJail(current_player);
 
-            // cout << current_player->getName() << "'s position: " << current_player->getPos() << endl;
-            cout << current_player->getName() << "'s location: " << BOARD[current_player->getPos()]->getName() << endl;
-            cout << current_player->getName() << "'s money: " << current_player->getMoney() << endl;
+            displayBoard();
+            cout << "_____ Turn " << turn_count << " _____" << endl;
+            cout << current_player->getName() << ", it's your turn. What would you like to do?" << endl;
+            cout << "Your location: " << BOARD[current_player->getPos()]->getName() << endl;
+            cout << "Your balance: $" << current_player->getMoney() << endl;
             current_player->displayProperties();
-            while(choice != 1){
-                cout << endl;
-                choice = turnStartMenu(current_player);
-                if(choice == 1){
-                    roll = rollDice();
-                    cout << "Your roll: " << roll << endl;
 
-                    // cout << "Enter your roll: ";
-                    // getline(cin, input);
-                    // stringstream(input) >> roll;
+            while(choice != 1){
+                choice = turnStartMenu();
+                if(choice == 1){
+                    // roll = rollDice();
+                    // cout << "Your roll: " << roll << endl;
+
+                    cout << "Enter your roll: ";
+                    getline(cin, input);
+                    stringstream(input) >> roll;
                     current_player->move(roll);
 
                     Location *current_location = BOARD[current_player->getPos()];
 
-                    while(current_location->getName() == "Bearcat Card"){
+                    if(current_location->getName() == "Bearcat Card"){
                         cout << "You landed on a Bearcat Card!" << endl;
                         cout << "The card says: ";
                         drawCard(current_player);
-                        if(current_player->getPos() == 420) break;
+                        if(current_player->inJail()) break;
                         current_location = BOARD[current_player->getPos()];
+                    } else {
+                        cout << "You landed on " << current_location->getName() << "." << endl;
                     }
-                    cout << "You landed on " << current_location->getName() << "." << endl;
                     if(current_location->getType() != "other"){
                         if(current_location->isOwned()){
                             if(current_location->getOwner() == current_player->getName()){
@@ -92,7 +93,7 @@ int main(){
                                 }
                             }
                         } else {
-                            cout << "Nobody owns this property. Would you like to buy it for $" << current_location->getPrice() << "? (y/n)" << endl;
+                            cout << "Nobody owns " << current_location->getName() << ". Would you like to buy it for $" << current_location->getPrice() << "? (y/n)" << endl;
                             getline(cin, input);
                             if(input == "y" || input == "yes" || input == "Yes"){
                                 if(current_location->buyLocation(current_player)){
@@ -198,13 +199,9 @@ int main(){
                 }
             }
                 choice = 0;
+                cout << "Your balance: $" << current_player->getMoney() << endl;
                 cout << current_player->getName() << ", press enter when you're ready to end your turn.";
                 getline(cin,input);
-                if(current_player->inJail()) continue;
-                cout << current_player->getName() << "'s position: " << current_player->getPos() << endl;
-                cout << current_player->getName() << "'s location: " << BOARD[current_player->getPos()]->getName() << endl;
-                cout << current_player->getName() << "'s money: " << current_player->getMoney() << endl;
-                current_player->displayProperties();
         }
 
         for(int i = 0; i < PLAYERS.size(); i++){

@@ -6,10 +6,9 @@
 
 using namespace std;
 
-int turnStartMenu(Player *player){
+int turnStartMenu(){
     int choice; string mystr;
-    cout << player->getName() << ", it's your turn. What would you like to do?" << endl
-         << "Options:" << endl
+    cout << endl << "Options:" << endl
          << "1. Roll to move" << endl
          << "2. Display your properties" << endl
          << "3. Sell some of your properties" << endl
@@ -42,13 +41,11 @@ int rollDice(){
     return move;
 }
 
-
 int getRandomCard(){
     srand(time(NULL));
     int card_number = rand() % 12;
     return card_number;
 }
-
 
 void drawCard(Player *player){
     int card_number = getRandomCard();
@@ -60,7 +57,7 @@ void drawCard(Player *player){
     else if(card_number == 1){
         cout << "You acquired a Get Out of Jail Free Pass." << endl;
         if(player->getJailPass() == true){
-            cout << "But you can only have one pass at a time, so you sold the new pass for $50." << endl;
+            cout << "But you already had one, so you sold the new pass for $50." << endl;
             player->addMoney(50);
         }
         if(player->getJailPass() == false) player->switchJailPass();
@@ -82,13 +79,19 @@ void drawCard(Player *player){
         }
     }
     else if(card_number == 5){
-        cout << "You missed out on Tender Tuesday. Advance to Raising Cane's to get some tenders." << endl;
-        if(player->getPos() > 28) player->addMoney(200);
+        cout << "You missed out on Chicken Tender Tuesday. Advance to Raising Cane's to get some tenders." << endl;
+        if(player->getPos() > 28){
+            cout << "You passed Go! Collect $200." << endl;
+            player->addMoney(200);
+        }
         player->setPos(28);
     }
     else if(card_number == 6){
         cout << "You and your roommates need a snack while studying. Advance to Insomnia Cookies." << endl;
-        if(player->getPos() > 12) player->addMoney(200);
+        if(player->getPos() > 12){
+            cout << "You passed Go! Collect $200." << endl;
+            player->addMoney(200);
+        }
         player->setPos(12);
     }
     else if(card_number == 7){
@@ -96,7 +99,11 @@ void drawCard(Player *player){
         int current_position = player->getPos();
         player->setPos(current_position - 3);
         if(player->getPos() < 0) player->setPos(39);
-        cout << "You landed on " << BOARD[player->getPos()]->getName() << "." << endl;
+        if(BOARD[player->getPos()]->getName() == "Bearcat Card"){
+            cout << "You landed on another Bearcat Card!" << endl;
+            cout << "The card says: ";
+            drawCard(player);
+        }
     }
     else if(card_number == 8){
         cout << "You won a scholarship contest. (Collect $150)" << endl;
@@ -114,4 +121,42 @@ void drawCard(Player *player){
         cout << "Pay your respects to Harambe. (Pay $100)" << endl;
         player->subMoney(100);
     }
+}
+
+void displayBoard(){
+    cout << " __________________________________________________________________________________________________________________________________________________ " << endl;
+    cout << "|   Free       |   Turner   |  Bearcat   |  Teachers  |            |            |            |   Fifth    |  Raising   |   Sigma    |    Go To     |" << endl;
+    cout << "|   Parking    |   Hall     |  Card      |  College   |    UPA     |   MLK Dr   |    ERC     |   Third    |  Cane's    |   Sigma    |    Jail      |" << endl;
+    cout << "|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|______________|" << endl;
+    cout << "|              |                                                                                                                    |   McMicken   |" << endl;
+    cout << "|  Rec Center  |                                                                                                                    |   Hall       |" << endl;
+    cout << "|______________|                                                                                                                    |______________|" << endl;
+    cout << "|              |                                                                                                                    |   Nippert    |" << endl;
+    cout << "|     DAAP     |                                                                                                                    |   Stadium    |" << endl;
+    cout << "|______________|                                                                                                                    |______________|" << endl;
+    cout << "|   Bearcat    |                                                                                                                    |   Bearcat    |" << endl;
+    cout << "|   Card       |                                                                                                                    |   Card       |" << endl;
+    cout << "|______________|                                                                                                                    |______________|" << endl;
+    cout << "|   Lindner    |                                                                                                                    |              |" << endl;
+    cout << "|   College    |                                                                                                                    |     TUC      |" << endl;
+    cout << "|______________|                                                                                                                    |______________|" << endl;
+    cout << "|              |                                                                                                                    |   Jefferson  |" << endl;
+    cout << "| Clifton Ave  |                                                                                                                    |   Ave        |" << endl;
+    cout << "|______________|                                                                                                                    |______________|" << endl;
+    cout << "|              |                                                                                                                    |   Bearcat    |" << endl;
+    cout << "| MarketPointe |                                                                                                                    |   Card       |" << endl;
+    cout << "|______________|                                                                                                                    |______________|" << endl;
+    cout << "|   Langsam    |                                                                                                                    |              |" << endl;
+    cout << "|   Library    |                                                                                                                    |   Morgens    |" << endl;
+    cout << "|______________|                                                                                                                    |______________|" << endl;
+    cout << "|   Insomnia   |                                                                                                                    |   Luxury     |" << endl;
+    cout << "|   Cookies    |                                                                                                                    |   Tax        |" << endl;
+    cout << "|______________|                                                                                                                    |______________|" << endl;
+    cout << "|   Baldwin    |                                                                                                                    |              |" << endl;
+    cout << "|   Hall       |                                                                                                                    |   Scioto     |" << endl;
+    cout << "|______________|____________________________________________________________________________________________________________________|______________|" << endl;
+    cout << "|              |            |            |            |            |            |            |            |            |            |              |" << endl;
+    cout << "|     Jail     |  Crosley   |   Center   |  Bearcat   |  Calhoun   |  Calhoun   |   Income   |  Old Chem  |  Bearcat   |   Dabney   |      Go      |" << endl;
+    cout << "|              |  Tower     |   Court    |  Card      |  Hall      |  St        |   Tax      |            |  Card      |   Hall     |              |" << endl;
+    cout << " -------------------------------------------------------------------------------------------------------------------------------------------------- " << endl;
 }
