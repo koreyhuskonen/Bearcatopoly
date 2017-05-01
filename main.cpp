@@ -59,12 +59,12 @@ int main(){
             while(choice != 1){
                 choice = turnStartMenu();
                 if(choice == 1){
-                    // roll = rollDice();
-                    // cout << "Your roll: " << roll << endl;
+                    roll = rollDice();
+                    cout << "Your roll: " << roll << endl;
 
-                    cout << "Enter your roll: ";
-                    getline(cin, input);
-                    stringstream(input) >> roll;
+                    // cout << "Enter your roll: ";
+                    // getline(cin, input);
+                    // stringstream(input) >> roll;
                     current_player->move(roll);
 
                     Location *current_location = BOARD[current_player->getPos()];
